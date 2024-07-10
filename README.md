@@ -19,6 +19,7 @@ npm run dev
 
 - **Vite**: To build the app.
 - **Tailwind CSS**: As CSS framework.
+- **React router**: As router lib.
 - **Lucide**: For icon library.
 - **commitlint**: To force conventional commits.
 - **husky**: To force hooks before push (test and commit message).
