@@ -18,6 +18,8 @@ npm run dev
 ## Tools
 
 - **Vite**: To build the app.
+- **Tailwind CSS**: As CSS framework.
+- **Lucide**: For icon library.
 - **commitlint**: To force conventional commits.
 - **husky**: To force hooks before push (test and commit message).
 - **commitizen**: To help build the commit messages.
