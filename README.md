@@ -21,6 +21,12 @@ npm run dev
 - **Tailwind CSS**: As CSS framework.
 - **React router**: As router lib.
 - **Lucide**: For icon library.
+- **React DayPicker**: To pick calendar dates.
 - **commitlint**: To force conventional commits.
 - **husky**: To force hooks before push (test and commit message).
-- **commitizen**: To help build the commit messages.
+
+## Roadmap
+
+- [ ] Add calendar picker lib for the dates
+- [ ] Smooth the navigation (button hover, maybe some small animations)
+- [ ] Change favcon

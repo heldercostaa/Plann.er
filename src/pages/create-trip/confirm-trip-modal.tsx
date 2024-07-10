@@ -1,25 +1,28 @@
+// prettier-ignore
 import { Mail, Plus, User, X } from "lucide-react"
-import { FormEvent } from "react"
-import { Button } from "../../components/button"
+import { FormEvent } from "react";
+import { Button } from "../../components/button";
 
 interface ConfirmTripModalProps {
-  closeConfirmTripModal: () => void
-  createTrip: (event: FormEvent<HTMLFormElement>) => void
+  closeConfirmTripModal: () => void;
+  createTrip: (event: FormEvent<HTMLFormElement>) => void;
 }
 
-export function ConfirmTripModal({ closeConfirmTripModal, createTrip }: ConfirmTripModalProps) {
+export function ConfirmTripModal({
+  closeConfirmTripModal,
+  createTrip,
+}: ConfirmTripModalProps) {
   return (
     <div className="fixed inset-0 bg-black/60 flex items-center justify-center">
       <div className="w-[640px] rounded-xl py-5 px-6 shadow-shape bg-zinc-900 space-y-5">
         <div className="space-y-2">
           <div className="flex items-center justify-between">
-            <h2 className="text-lg font-semibold">
-              Confirm trip creation
-            </h2>
+            <h2 className="text-lg font-semibold">Confirm trip creation</h2>
             <button type="button" onClick={closeConfirmTripModal}>
               <X className="size-5 text-zinc-400" />
             </button>
           </div>
+          {/* prettier-ignore */}
           <p className="text-sm text-zinc-400">
             To complete the trip creation to <span className="font-semibold text-zinc-100">Fortaleza, Brasil</span> between <span className="font-semibold text-zinc-100">16 and 27 of August 2024</span>, fill your data below:
           </p>
@@ -52,5 +55,5 @@ export function ConfirmTripModal({ closeConfirmTripModal, createTrip }: ConfirmT
         </form>
       </div>
     </div>
-  )
+  );
 }

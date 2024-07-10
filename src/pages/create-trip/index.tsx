@@ -6,66 +6,65 @@ import { DestinationAndDateStep } from "./steps/destination-and-date-step";
 import { InviteGuestsStep } from "./steps/invite-guests-step";
 
 export function CreateTripPage() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const [isGuestsInputOpen, setIsGuestsInputOpen] = useState(false)
-  const [isGuestsModalOpen, setIsGuestsModalOpen] = useState(false)
-  const [isConfirmTripModalOpen, setIsConfirmTripModalOpen] = useState(false)
+  const [isGuestsInputOpen, setIsGuestsInputOpen] = useState(false);
+  const [isGuestsModalOpen, setIsGuestsModalOpen] = useState(false);
+  const [isConfirmTripModalOpen, setIsConfirmTripModalOpen] = useState(false);
   const [emailsToInvite, setEmailsToInvite] = useState([
     "helder@gmail.com",
-    "giovanna@gmail.com"
-  ])
+    "giovanna@gmail.com",
+  ]);
 
   function openGuestsInput() {
-    setIsGuestsInputOpen(true)
+    setIsGuestsInputOpen(true);
   }
 
   function closeGuestsInput() {
-    setIsGuestsInputOpen(false)
+    setIsGuestsInputOpen(false);
   }
 
   function openGuestsModal() {
-    setIsGuestsModalOpen(true)
+    setIsGuestsModalOpen(true);
   }
 
   function closeGuestsModal() {
-    setIsGuestsModalOpen(false)
+    setIsGuestsModalOpen(false);
   }
 
   function openConfirmTripModal() {
-    setIsConfirmTripModalOpen(true)
+    setIsConfirmTripModalOpen(true);
   }
 
   function closeConfirmTripModal() {
-    setIsConfirmTripModalOpen(false)
+    setIsConfirmTripModalOpen(false);
   }
 
   function addNewEmailToInvite(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault()
+    event.preventDefault();
 
-    const data = new FormData(event.currentTarget)
-    const email = data.get('email')?.toString()
+    const data = new FormData(event.currentTarget);
+    const email = data.get("email")?.toString();
 
     if (!email) return;
     if (emailsToInvite.includes(email)) return;
 
-    setEmailsToInvite([
-      ...emailsToInvite,
-      email
-    ])
+    setEmailsToInvite([...emailsToInvite, email]);
 
-    event.currentTarget.reset()
+    event.currentTarget.reset();
   }
 
   function removeEmailFromInvites(emailToRemove: string) {
-    const newEmailList = emailsToInvite.filter(email => email !== emailToRemove)
-    setEmailsToInvite(newEmailList)
+    const newEmailList = emailsToInvite.filter(
+      (email) => email !== emailToRemove
+    );
+    setEmailsToInvite(newEmailList);
   }
 
   function createTrip(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault()
+    event.preventDefault();
 
-    navigate('/trips/abc-123')
+    navigate("/trips/abc-123");
   }
 
   return (
@@ -94,6 +93,7 @@ export function CreateTripPage() {
           )}
         </div>
 
+        {/* prettier-ignore */}
         <p className="text-zinc-500 text-sm ">
           By planning your trip with Plann.er you automatically agree <br />
           with our <a className="text-zinc-300 underline" href="#"> terms of use</a> and <a className="text-zinc-300 underline" href="#">privacy policies</a>.
@@ -115,7 +115,6 @@ export function CreateTripPage() {
           createTrip={createTrip}
         />
       )}
-
     </div>
   );
 }

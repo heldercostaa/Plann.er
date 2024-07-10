@@ -5,15 +5,21 @@ export function Activities() {
     <div className="space-y-8">
       <div className="space-y-2.5">
         <div className="flex gap-2 items-baseline">
-          <span className="text-xl text-zinc-300 font-semibold">August 17th</span>
+          <span className="text-xl text-zinc-300 font-semibold">
+            August 17th
+          </span>
           <span className="text-xs text-zinc-500">Monday</span>
         </div>
-        <p className="text-zinc-500 text-sm">No activities registered for this day yet.</p>
+        <p className="text-zinc-500 text-sm">
+          No activities registered for this day yet.
+        </p>
       </div>
 
       <div className="space-y-2.5">
         <div className="flex gap-2 items-baseline">
-          <span className="text-xl text-zinc-300 font-semibold">August 18th</span>
+          <span className="text-xl text-zinc-300 font-semibold">
+            August 18th
+          </span>
           <span className="text-xs text-zinc-500">Tuesday</span>
         </div>
         <div className="space-y-2.5">
@@ -32,5 +38,5 @@ export function Activities() {
         </div>
       </div>
     </div>
-  )
+  );
 }

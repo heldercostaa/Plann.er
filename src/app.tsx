@@ -1,13 +1,13 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { CreateTripPage } from "./pages/create-trip";
-import { TripDetailsPage } from './pages/trip-details/index';
+import { TripDetailsPage } from "./pages/trip-details/index";
 import { ErrorPage } from "./pages/error";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <CreateTripPage />,
-    errorElement: <ErrorPage />
+    errorElement: <ErrorPage />,
   },
   {
     path: "/trips/:tripId",
@@ -16,7 +16,5 @@ const router = createBrowserRouter([
 ]);
 
 export function App() {
-  return (
-    <RouterProvider router={router} />
-  )
+  return <RouterProvider router={router} />;
 }
