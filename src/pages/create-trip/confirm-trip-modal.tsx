@@ -1,20 +1,24 @@
 // prettier-ignore
-import { Mail, Plus, User, X } from "lucide-react"
+import { Mail, User, X } from "lucide-react";
 import { FormEvent } from "react";
 import { Button } from "../../components/button";
 
 interface ConfirmTripModalProps {
   closeConfirmTripModal: () => void;
   createTrip: (event: FormEvent<HTMLFormElement>) => void;
+  setOwnerName: (name: string) => void;
+  setOwnerEmail: (email: string) => void;
 }
 
 export function ConfirmTripModal({
   closeConfirmTripModal,
   createTrip,
+  setOwnerName,
+  setOwnerEmail,
 }: ConfirmTripModalProps) {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/60">
-      <div className="w-[640px] space-y-5 rounded-xl bg-zinc-900 px-6 py-5 shadow-shape">
+      <div className="w-[480px] space-y-5 rounded-xl bg-zinc-900 px-6 py-5 shadow-shape">
         <div className="space-y-2">
           <div className="flex items-center justify-between">
             <h2 className="text-lg font-semibold">Confirm trip creation</h2>
@@ -35,6 +39,7 @@ export function ConfirmTripModal({
               name="name"
               placeholder="Your full name"
               className="w-40 flex-1 bg-transparent text-lg placeholder-zinc-400 outline-none"
+              onChange={(event) => setOwnerName(event.target.value)}
             />
           </div>
 
@@ -45,12 +50,12 @@ export function ConfirmTripModal({
               name="email"
               placeholder="Your personal email"
               className="w-40 flex-1 bg-transparent text-lg placeholder-zinc-400 outline-none"
+              onChange={(event) => setOwnerEmail(event.target.value)}
             />
           </div>
 
           <Button type="submit" size="full">
             Confirm trip creation
-            <Plus className="size-5" />
           </Button>
         </form>
       </div>
