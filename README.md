@@ -30,3 +30,5 @@ npm run dev
 - [ ] Add calendar picker lib for the dates
 - [ ] Smooth the navigation (button hover, maybe some small animations)
 - [ ] Change favcon
+- [ ] Blur background when modal is open
+- [ ] Implement mobile version

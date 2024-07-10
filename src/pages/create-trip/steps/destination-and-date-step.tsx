@@ -1,5 +1,9 @@
-import { ArrowRight, Calendar, MapPin, Settings2 } from "lucide-react";
+import { ArrowRight, Calendar, MapPin, Settings2, X } from "lucide-react";
+import { useState } from "react";
+import { DateRange, DayPicker } from "react-day-picker";
+import "react-day-picker/dist/style.css";
 import { Button } from "../../../components/button";
+import { format } from "date-fns";
 
 interface DestinationAndDateStepProps {
   isGuestsInputOpen: boolean;
@@ -12,32 +16,71 @@ export function DestinationAndDateStep({
   closeGuestsInput,
   openGuestsInput,
 }: DestinationAndDateStepProps) {
+  const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
+  const [eventStartAndEndDates, setEventStartAndEndDates] = useState<
+    DateRange | undefined
+  >();
+
+  function openDatePicker() {
+    return setIsDatePickerOpen(true);
+  }
+
+  function closeDatePicker() {
+    return setIsDatePickerOpen(false);
+  }
+
+  function formatDate(dates?: DateRange) {
+    if (!dates?.from || !dates.to) return "When?";
+
+    // Dec 20, 2024 to Jan 10, 2025
+    return `${format(dates.from, "PP").replace(/ /g, "\u00A0")} to ${format(dates.to, "PP").replace(/ /g, "\u00A0")}`;
+  }
+
   return (
-    <div className="h-16 bg-zinc-900 px-4 rounded-xl flex items-center shadow-shape gap-3">
-      <div className="flex items-center gap-2 flex-1">
+    <div className="flex h-16 items-center gap-3 rounded-xl bg-zinc-900 px-4 shadow-shape">
+      <div className="flex flex-1 items-center gap-2">
         <MapPin className="size-5 text-zinc-400" />
         <input
           disabled={isGuestsInputOpen}
           type="text"
           placeholder="Where are you going?"
-          className="bg-transparent text-lg placeholder-zinc-400 outline-none flex-1"
+          className="flex-1 bg-transparent text-lg placeholder-zinc-400 outline-none"
         />
       </div>
 
-      <div className="flex items-center gap-2">
+      <button
+        onClick={openDatePicker}
+        disabled={isGuestsInputOpen}
+        className="flex items-center gap-2 text-left outline-none"
+      >
         <Calendar className="size-5 text-zinc-400" />
-        <input
-          disabled={isGuestsInputOpen}
-          type="text"
-          placeholder="When?"
-          className="bg-transparent text-lg
-          placeholder-zinc-400
-          w-40
-          outline-none"
-        />
-      </div>
+        <span className="text-s w-32 flex-1 text-zinc-400">
+          {formatDate(eventStartAndEndDates)}
+        </span>
+      </button>
 
-      <div className="w-px h-6 bg-zinc-800" />
+      {isDatePickerOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black/60">
+          <div className="space-y-5 rounded-xl bg-zinc-900 px-6 py-5 shadow-shape">
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <h2 className="text-lg font-semibold">Select the date</h2>
+                <button type="button" onClick={closeDatePicker}>
+                  <X className="size-5 text-zinc-400" />
+                </button>
+              </div>
+            </div>
+
+            <DayPicker
+              mode="range"
+              selected={eventStartAndEndDates}
+              onSelect={setEventStartAndEndDates}
+            />
+          </div>
+        </div>
+      )}
+
+      <div className="h-6 w-px bg-zinc-800" />
 
       {isGuestsInputOpen ? (
         <Button onClick={closeGuestsInput} variant="secondary">
