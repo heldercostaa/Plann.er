@@ -32,3 +32,4 @@ npm run dev
 - [ ] Change favcon
 - [ ] Blur background when modal is open
 - [ ] Implement mobile version
+- [ ] Add loading states

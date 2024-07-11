@@ -1,9 +1,9 @@
-import { format } from "date-fns";
 import { ArrowRight, Calendar, MapPin, Settings2, X } from "lucide-react";
 import { useState } from "react";
 import { DateRange, DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 import { Button } from "../../../components/button";
+import { formatDate } from "../../../utils/formatDate";
 
 interface DestinationAndDateStepProps {
   isGuestsInputOpen: boolean;
@@ -30,13 +30,6 @@ export function DestinationAndDateStep({
 
   function closeDatePicker() {
     return setIsDatePickerOpen(false);
-  }
-
-  function formatDate(dates?: DateRange) {
-    if (!dates?.from || !dates.to) return "When?";
-
-    // Dec 20, 2024 to Jan 10, 2025
-    return `${format(dates.from, "PP").replace(/ /g, "\u00A0")} to ${format(dates.to, "PP").replace(/ /g, "\u00A0")}`;
   }
 
   return (
