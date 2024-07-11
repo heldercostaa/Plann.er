@@ -8,7 +8,7 @@ interface Participant {
   id: string;
   name: string | null;
   email: string;
-  is_confirmed: boolean;
+  isConfirmed: boolean;
 }
 
 export function Guests() {
@@ -16,18 +16,16 @@ export function Guests() {
   const [participants, setParticipants] = useState<Participant[]>([]);
 
   useEffect(() => {
-    api.get(`/trips/${tripId}/participants`).then((response) => {
-      const participants = response.data.participants;
-
-      setParticipants(participants);
-    });
+    api
+      .get(`/trips/${tripId}/participants`)
+      .then((response) => setParticipants(response.data.participants));
   }, [tripId]);
 
   return (
     <div className="space-y-5">
       <h2 className="text-2xl font-semibold">Guests</h2>
       <div className="space-y-5">
-        {participants?.map(({ id, email, name, is_confirmed }, index) => {
+        {participants?.map(({ id, email, name, isConfirmed }, index) => {
           return (
             <div key={id} className="flex items-center justify-between gap-4">
               <div className="space-y-1.5">
@@ -38,7 +36,7 @@ export function Guests() {
                   {email}
                 </span>
               </div>
-              {is_confirmed ? (
+              {isConfirmed ? (
                 <CheckCircle2 className="size-5 shrink-0 text-green-400" />
               ) : (
                 <CircleDashed className="size-5 shrink-0 text-zinc-400" />

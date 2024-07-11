@@ -33,3 +33,4 @@ npm run dev
 - [ ] Blur background when modal is open
 - [ ] Implement mobile version
 - [ ] Add loading states
+- [ ] Input validations

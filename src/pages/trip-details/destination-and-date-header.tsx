@@ -8,9 +8,9 @@ import { formatDate } from "../../utils/formatDate";
 interface Trip {
   id: string;
   destination: string;
-  starts_at: string;
-  ends_at: string;
-  is_confirmed: string;
+  startsAt: string;
+  endsAt: string;
+  isConfirmed: string;
 }
 
 export function DestinationAndDateHeader() {
@@ -27,8 +27,8 @@ export function DestinationAndDateHeader() {
       setTrip(trip);
       setFormattedDate(
         formatDate({
-          from: new Date(trip.starts_at),
-          to: new Date(trip.ends_at),
+          from: new Date(trip.startsAt),
+          to: new Date(trip.endsAt),
         }),
       );
     });
