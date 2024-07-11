@@ -1,8 +1,8 @@
 import { Calendar, Tag, X } from "lucide-react";
-import { Button } from "../../components/button";
 import { FormEvent } from "react";
-import { api } from "../../lib/axios";
 import { useParams } from "react-router-dom";
+import { Button } from "../../components/button";
+import { api } from "../../lib/axios";
 
 interface CreateActivityModalProps {
   closeCreateActivityModal: () => void;
@@ -21,12 +21,16 @@ export function CreateActivityModal({
     const title = data.get("title")?.toString();
     const occursAt = data.get("occursAt")?.toString();
 
+    if (!title) return;
+    if (!occursAt) return;
+
     await api.post(`/trips/${tripId}/activities`, {
       title,
       occursAt,
     });
 
-    closeCreateActivityModal();
+    // TODO: Improve refresh page
+    window.document.location.reload();
   }
 
   return (

@@ -34,3 +34,10 @@ npm run dev
 - [ ] Implement mobile version
 - [ ] Add loading states
 - [ ] Input validations
+- [ ] Improve refresh when adding new elements to array
+- [ ] Add and List links
+- [ ] Change trip information
+- [ ] Manage guests
+- [ ] Create reusable input component
+- [ ] Add outline to selected inputs
+- [ ] Add transitions to open modal
