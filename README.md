@@ -30,7 +30,6 @@ npm run dev
 - [ ] Add calendar picker lib for the dates
 - [ ] Smooth the navigation (button hover, maybe some small animations)
 - [ ] Change favcon
-- [ ] Blur background when modal is open
 - [ ] Implement mobile version
 - [ ] Add loading states
 - [ ] Input validations
@@ -40,4 +39,5 @@ npm run dev
 - [ ] Manage guests
 - [ ] Create reusable input component
 - [ ] Add outline to selected inputs
+- [ ] Close when click outside the modal
 - [ ] Add transitions to open modal
