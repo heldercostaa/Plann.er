@@ -1,11 +1,11 @@
+import { Dayjs } from "dayjs";
 import { FormEvent, useState } from "react";
-import { DateRange } from "react-day-picker";
 import { useNavigate } from "react-router-dom";
+import { api } from "../../lib/axios";
 import { ConfirmTripModal } from "./confirm-trip-modal";
 import { InviteGuestsModal } from "./invite-guests-modal";
 import { DestinationAndDateStep } from "./steps/destination-and-date-step";
 import { InviteGuestsStep } from "./steps/invite-guests-step";
-import { api } from "../../lib/axios";
 
 export function CreateTripPage() {
   const navigate = useNavigate();
@@ -17,7 +17,9 @@ export function CreateTripPage() {
   const [destination, setDestination] = useState("");
   const [ownerName, setOwnerName] = useState("");
   const [ownerEmail, setOwnerEmail] = useState("");
-  const [dateRange, setDateRange] = useState<DateRange | undefined>();
+  const [dateRange, setDateRange] = useState<
+    [Dayjs | null, Dayjs | null] | null
+  >(null);
 
   const [emailsToInvite, setEmailsToInvite] = useState([
     "helder@gmail.com",
@@ -72,15 +74,18 @@ export function CreateTripPage() {
   async function createTrip(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
+    if (!dateRange) return;
+    const [startsAt, endsAt] = dateRange;
+
+    if (!startsAt || !endsAt) return;
     if (!destination) return;
-    if (!dateRange?.from || !dateRange.to) return;
-    if (emailsToInvite.length === 0) return;
     if (!ownerName || !ownerEmail) return;
+    if (emailsToInvite.length === 0) return;
 
     const response = await api.post("/trips", {
       destination,
-      startsAt: dateRange.from,
-      endsAt: dateRange.to,
+      startsAt,
+      endsAt,
       emailsToInvite,
       ownerName,
       ownerEmail,

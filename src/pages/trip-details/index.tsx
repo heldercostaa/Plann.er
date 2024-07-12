@@ -1,6 +1,7 @@
 import { Plus } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Button } from "../../components/button";
 import { api } from "../../lib/axios";
 import { Trip } from "../../types/trip";
 import { Activities } from "./activities";
@@ -8,7 +9,6 @@ import { CreateActivityModal } from "./create-activity-modal";
 import { DestinationAndDateHeader } from "./destination-and-date-header";
 import { Guests } from "./guests";
 import { RelevantLinks } from "./relevant-links";
-import { Button } from "../../components/button";
 
 export function TripDetailsPage() {
   const { tripId } = useParams();
@@ -61,6 +61,7 @@ export function TripDetailsPage() {
       {isCreateActivityModalOpen && (
         <CreateActivityModal
           closeCreateActivityModal={closeCreateActivityModal}
+          trip={trip}
         />
       )}
     </div>

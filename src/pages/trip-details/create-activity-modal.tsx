@@ -1,17 +1,24 @@
+import { DatePicker } from "antd";
+import dayjs, { Dayjs } from "dayjs";
 import { Calendar, Tag, X } from "lucide-react";
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Button } from "../../components/button";
 import { api } from "../../lib/axios";
+import { Trip } from "../../types/trip";
 
 interface CreateActivityModalProps {
   closeCreateActivityModal: () => void;
+  trip: Trip;
 }
 
 export function CreateActivityModal({
   closeCreateActivityModal,
+  trip,
 }: CreateActivityModalProps) {
   const { tripId } = useParams();
+
+  const [occursAt, setOccursAt] = useState<Dayjs | undefined>(undefined);
 
   async function createActivity(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -19,14 +26,15 @@ export function CreateActivityModal({
     const data = new FormData(event.currentTarget);
 
     const title = data.get("title")?.toString();
-    const occursAt = data.get("occursAt")?.toString();
+
+    console.log(occursAt);
 
     if (!title) return;
     if (!occursAt) return;
 
     await api.post(`/trips/${tripId}/activities`, {
       title,
-      occursAt,
+      occursAt: occursAt.toISOString(),
     });
 
     // TODO: Improve refresh page
@@ -61,11 +69,20 @@ export function CreateActivityModal({
           <div className="flex items-center gap-2">
             <div className="flex h-14 flex-1 items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-950 px-4">
               <Calendar className="size-5 text-zinc-400" />
-              <input
-                type="datetime-local"
-                name="occursAt"
-                placeholder="Activity date and time"
-                className="w-40 flex-1 bg-transparent text-lg placeholder-zinc-400 outline-none"
+              <DatePicker
+                size="large"
+                variant="borderless"
+                showTime
+                minDate={dayjs(trip.startsAt)}
+                maxDate={dayjs(trip.endsAt)}
+                format={`ddd, MMMM Do [at] h:mm A`}
+                showSecond={false}
+                minuteStep={5}
+                suffixIcon
+                value={occursAt}
+                onChange={setOccursAt}
+                placeholder="Pick a date and time"
+                className="p-0 text-white"
               />
             </div>
           </div>

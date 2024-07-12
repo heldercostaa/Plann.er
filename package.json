@@ -1,5 +1,5 @@
 {
-  "name": "plann.er-web",
+  "name": "plann.er",
   "version": "1.0.0",
   "description": "Plann.er App to manage trips with participants, activities, links and more.",
   "author": "Helder Costa",
@@ -12,6 +12,7 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "antd": "^5.19.1",
     "axios": "^1.7.2",
     "date-fns": "^3.6.0",
     "dayjs": "^1.11.11",
@@ -19,7 +20,6 @@
     "lucide-react": "^0.407.0",
     "match-sorter": "^6.3.4",
     "react": "^18.3.1",
-    "react-day-picker": "^8.10.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.24.1",
     "sort-by": "^1.2.0",
