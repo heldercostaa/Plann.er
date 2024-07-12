@@ -48,6 +48,7 @@ export function DestinationAndDateStep({
           value={dateRange}
           onChange={setDateRange}
           className="w-60 p-0 text-white placeholder-zinc-400"
+          inputReadOnly
         />
       </div>
 
@@ -57,7 +58,7 @@ export function DestinationAndDateStep({
           <Settings2 className="size-5" />
         </Button>
       ) : (
-        <Button onClick={openGuestsInput} disabled={!dateRange && !destination}>
+        <Button onClick={openGuestsInput} disabled={!dateRange || !destination}>
           Continue
           <ArrowRight className="sice-5" />
         </Button>

@@ -1,17 +1,21 @@
 import { AtSign, Plus, X } from "lucide-react";
-import { FormEvent } from "react";
 import { Button } from "../../components/button";
 import { Input } from "../../components/input";
+import { isEmailValid } from "../../utils/validateEmail";
 
 interface InviteGuestsModalProps {
   closeGuestsModal: () => void;
+  emailToInvite: string;
+  setEmailToInvite: (emailToInvite: string) => void;
   emailsToInvite: string[];
-  addNewEmailToInvite: (event: FormEvent<HTMLFormElement>) => void;
+  addNewEmailToInvite: () => void;
   removeEmailFromInvites: (email: string) => void;
 }
 
 export function InviteGuestsModal({
   closeGuestsModal,
+  emailToInvite,
+  setEmailToInvite,
   emailsToInvite,
   addNewEmailToInvite,
   removeEmailFromInvites,
@@ -53,22 +57,23 @@ export function InviteGuestsModal({
 
         <div className="h-px w-full bg-zinc-800" />
 
-        <form
-          onSubmit={addNewEmailToInvite}
-          className="flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-950 p-2.5"
-        >
+        <div className="flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-950 p-2.5">
           <Input
             Icon={AtSign}
-            type="email"
-            name="email"
             placeholder="Enter guest's email"
             stretch="full"
+            value={emailToInvite}
+            onChange={(event) => setEmailToInvite(event.target.value)}
+            onKeyDown={({ key }) => key === "Enter" && addNewEmailToInvite()}
           />
-          <Button type="submit">
+          <Button
+            onClick={addNewEmailToInvite}
+            disabled={!isEmailValid(emailToInvite)}
+          >
             Invite
             <Plus className="size-5 min-h-5" />
           </Button>
-        </form>
+        </div>
       </div>
     </div>
   );

@@ -27,9 +27,6 @@ npm run dev
 
 ## Roadmap
 
-- [ ] Create reusable input component
-- [ ] Implement disabled status of button
-- [ ] Implement disabled status of input
 - [ ] Add and List links
 - [ ] Change trip information
 - [ ] Manage guests
@@ -41,3 +38,4 @@ npm run dev
 - [ ] Improve refresh when adding new elements to array
 - [ ] Smooth the navigation (button hover, maybe some small animations)
 - [ ] Implement mobile version
+- [ ] Integrate location lib show a dropdown with location sugestion

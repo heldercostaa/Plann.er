@@ -1,8 +1,9 @@
 // prettier-ignore
 import { Mail, User, X } from "lucide-react";
-import { FormEvent } from "react";
+import { FormEvent, useRef } from "react";
 import { Button } from "../../components/button";
 import { Input } from "../../components/input";
+import { isEmailValid } from "../../utils/validateEmail";
 
 interface ConfirmTripModalProps {
   closeConfirmTripModal: () => void;
@@ -17,6 +18,19 @@ export function ConfirmTripModal({
   setOwnerName,
   setOwnerEmail,
 }: ConfirmTripModalProps) {
+  const nameInputRef = useRef<HTMLInputElement>(null);
+  const emailInputRef = useRef<HTMLInputElement>(null);
+
+  function canConfirmTrip() {
+    const name = nameInputRef.current?.value;
+    const email = emailInputRef.current?.value;
+
+    if (!name || !email) return false;
+    if (!isEmailValid(email)) return false;
+
+    return true;
+  }
+
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/60 backdrop-blur-md">
       <div className="w-[480px] space-y-5 rounded-xl bg-zinc-900 px-6 py-5 shadow-shape">
@@ -40,6 +54,7 @@ export function ConfirmTripModal({
             placeholder="Your full name"
             onChange={(event) => setOwnerName(event.target.value)}
             variant="filled"
+            inputRef={nameInputRef}
           />
 
           <Input
@@ -49,9 +64,10 @@ export function ConfirmTripModal({
             placeholder="Your personal email"
             onChange={(event) => setOwnerEmail(event.target.value)}
             variant="filled"
+            inputRef={emailInputRef}
           />
 
-          <Button type="submit" size="full">
+          <Button type="submit" size="full" disabled={!canConfirmTrip()}>
             Confirm trip creation
           </Button>
         </form>

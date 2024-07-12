@@ -4,7 +4,7 @@ import { Button } from "../../components/button";
 export function RelevantLinks() {
   return (
     <div className="space-y-5">
-      <h2 className="font-semibold text-2xl">Relevant Links</h2>
+      <h2 className="text-2xl font-semibold">Relevant Links</h2>
       <div className="space-y-5">
         <div className="flex items-center justify-between gap-4">
           <div className="space-y-1.5">
@@ -13,12 +13,12 @@ export function RelevantLinks() {
             </span>
             <a
               href="#"
-              className="block text-xs text-zinc-400 truncate hover:text-zinc-200"
+              className="block truncate text-xs text-zinc-400 hover:text-zinc-200"
             >
               https://airbnb.com/rooms/1047018923791273891723981928370011
             </a>
           </div>
-          <Link2 className="text-zinc-400 size-5 shrink-0" />
+          <Link2 className="size-5 shrink-0 text-zinc-400" />
         </div>
         <div className="flex items-center justify-between gap-4">
           <div className="space-y-1.5">
@@ -27,12 +27,12 @@ export function RelevantLinks() {
             </span>
             <a
               href="#"
-              className="block text-xs text-zinc-400 truncate hover:text-zinc-200"
+              className="block truncate text-xs text-zinc-400 hover:text-zinc-200"
             >
               https://airbnb.com/rooms/1047018923791273891723981928370011
             </a>
           </div>
-          <Link2 className="text-zinc-400 size-5 shrink-0" />
+          <Link2 className="size-5 shrink-0 text-zinc-400" />
         </div>
       </div>
 

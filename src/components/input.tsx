@@ -1,5 +1,5 @@
 import { LucideIcon } from "lucide-react";
-import { ComponentProps } from "react";
+import { ComponentProps, RefObject } from "react";
 import { tv, VariantProps } from "tailwind-variants";
 
 const inputVariants = tv({
@@ -8,7 +8,7 @@ const inputVariants = tv({
   variants: {
     variant: {
       borderless: "",
-      filled: "rounded-lg border border-zinc-800 bg-zinc-950 px-4 h-14",
+      filled: "h-14 rounded-lg border border-zinc-800 bg-zinc-950 px-4",
     },
 
     stretch: {
@@ -26,15 +26,23 @@ const inputVariants = tv({
 // prettier-ignore
 interface InputProps extends ComponentProps<"input">, VariantProps<typeof inputVariants> {
   Icon?: LucideIcon;
+  inputRef?: RefObject<HTMLInputElement>;
 }
 
-export function Input({ Icon, variant, stretch, ...props }: InputProps) {
+export function Input({
+  Icon,
+  variant,
+  stretch,
+  inputRef,
+  ...props
+}: InputProps) {
   return (
     <div className={inputVariants({ variant, stretch })}>
       {Icon && <Icon className="size-5 text-zinc-400" />}
       <input
         {...props}
-        className="bg-transparent text-lg placeholder-zinc-400 outline-none"
+        ref={inputRef}
+        className="flex-1 bg-transparent text-lg placeholder-zinc-400 outline-none disabled:cursor-not-allowed disabled:opacity-60"
       />
     </div>
   );

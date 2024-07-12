@@ -1,9 +1,13 @@
-import { format } from "date-fns";
-import { DateRange } from "react-day-picker";
+import { Dayjs } from "dayjs";
 
-export function formatDate(dates?: DateRange) {
-  if (!dates?.from || !dates.to) return "When?";
+interface FormatDates {
+  startsAt?: Dayjs;
+  endsAt?: Dayjs;
+}
+
+export function formatDates({ startsAt, endsAt }: FormatDates) {
+  if (!startsAt || !endsAt) return "When?";
 
   // Dec 20, 2024 to Jan 10, 2025
-  return `${format(dates.from, "PP").replace(/ /g, "\u00A0")} to ${format(dates.to, "PP").replace(/ /g, "\u00A0")}`;
+  return `${startsAt.format("ll").replace(/ /g, "\u00A0")} to ${endsAt.format("ll").replace(/ /g, "\u00A0")}`;
 }

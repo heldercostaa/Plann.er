@@ -1,12 +1,12 @@
 import { DatePicker } from "antd";
 import dayjs, { Dayjs } from "dayjs";
 import { Calendar, Tag, X } from "lucide-react";
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Button } from "../../components/button";
+import { Input } from "../../components/input";
 import { api } from "../../lib/axios";
 import { Trip } from "../../types/trip";
-import { Input } from "../../components/input";
 
 interface CreateActivityModalProps {
   closeCreateActivityModal: () => void;
@@ -19,17 +19,10 @@ export function CreateActivityModal({
 }: CreateActivityModalProps) {
   const { tripId } = useParams();
 
+  const [title, setTitle] = useState<string>("");
   const [occursAt, setOccursAt] = useState<Dayjs | undefined>(undefined);
 
-  async function createActivity(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-
-    const data = new FormData(event.currentTarget);
-
-    const title = data.get("title")?.toString();
-
-    console.log(occursAt);
-
+  async function createActivity() {
     if (!title) return;
     if (!occursAt) return;
 
@@ -57,12 +50,13 @@ export function CreateActivityModal({
           </p>
         </div>
 
-        <form onSubmit={createActivity} className="space-y-3">
+        <div className="space-y-3">
           <Input
             Icon={Tag}
             name="title"
             placeholder="What is the activity?"
             variant="filled"
+            onChange={(event) => setTitle(event.target.value)}
           />
 
           <div className="flex h-14 items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-950 px-5">
@@ -81,11 +75,18 @@ export function CreateActivityModal({
               onChange={setOccursAt}
               placeholder="Pick a date and time"
               className="flex-1 p-0 text-white"
+              inputReadOnly
             />
           </div>
 
-          <Button size="full">Create activity</Button>
-        </form>
+          <Button
+            size="full"
+            onClick={createActivity}
+            disabled={!occursAt || !title}
+          >
+            Create activity
+          </Button>
+        </div>
       </div>
     </div>
   );

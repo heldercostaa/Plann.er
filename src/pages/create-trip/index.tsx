@@ -2,6 +2,7 @@ import { Dayjs } from "dayjs";
 import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../../lib/axios";
+import { isEmailValid } from "../../utils/validateEmail";
 import { ConfirmTripModal } from "./confirm-trip-modal";
 import { InviteGuestsModal } from "./invite-guests-modal";
 import { DestinationAndDateStep } from "./steps/destination-and-date-step";
@@ -21,6 +22,7 @@ export function CreateTripPage() {
     [Dayjs | null, Dayjs | null] | null
   >(null);
 
+  const [emailToInvite, setEmailToInvite] = useState("");
   const [emailsToInvite, setEmailsToInvite] = useState([
     "helder@gmail.com",
     "giovanna@gmail.com",
@@ -50,18 +52,13 @@ export function CreateTripPage() {
     setIsConfirmTripModalOpen(false);
   }
 
-  function addNewEmailToInvite(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+  function addNewEmailToInvite() {
+    if (!emailToInvite) return;
+    if (!isEmailValid(emailToInvite)) return;
+    if (emailsToInvite.includes(emailToInvite)) return;
 
-    const data = new FormData(event.currentTarget);
-    const email = data.get("email")?.toString();
-
-    if (!email) return;
-    if (emailsToInvite.includes(email)) return;
-
-    setEmailsToInvite([...emailsToInvite, email]);
-
-    event.currentTarget.reset();
+    setEmailsToInvite([...emailsToInvite, emailToInvite]);
+    setEmailToInvite("");
   }
 
   function removeEmailFromInvites(emailToRemove: string) {
@@ -135,9 +132,11 @@ export function CreateTripPage() {
 
       {isGuestsModalOpen && (
         <InviteGuestsModal
+          closeGuestsModal={closeGuestsModal}
+          emailToInvite={emailToInvite}
+          setEmailToInvite={setEmailToInvite}
           emailsToInvite={emailsToInvite}
           addNewEmailToInvite={addNewEmailToInvite}
-          closeGuestsModal={closeGuestsModal}
           removeEmailFromInvites={removeEmailFromInvites}
         />
       )}

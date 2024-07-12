@@ -1,7 +1,8 @@
+import dayjs from "dayjs";
 import { Calendar, MapPin, Settings2 } from "lucide-react";
 import { Button } from "../../components/button";
 import { Trip } from "../../types/trip";
-import { formatDate } from "../../utils/formatDate";
+import { formatDates } from "../../utils/formatDate";
 
 interface DestinationAndDateHeaderProps {
   trip: Trip;
@@ -10,9 +11,9 @@ interface DestinationAndDateHeaderProps {
 export function DestinationAndDateHeader({
   trip,
 }: DestinationAndDateHeaderProps) {
-  const formattedDate = formatDate({
-    from: new Date(trip.startsAt),
-    to: new Date(trip.endsAt),
+  const formattedDate = formatDates({
+    startsAt: dayjs(trip.startsAt),
+    endsAt: dayjs(trip.endsAt),
   });
 
   return (
