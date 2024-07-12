@@ -2,6 +2,7 @@ import { DatePicker } from "antd";
 import dayjs, { Dayjs } from "dayjs";
 import { ArrowRight, Calendar, MapPin, Settings2 } from "lucide-react";
 import { Button } from "../../../components/button";
+import { Input } from "../../../components/input";
 
 interface DestinationAndDateStepProps {
   isGuestsInputOpen: boolean;
@@ -13,6 +14,7 @@ interface DestinationAndDateStepProps {
     dateString: [string, string],
   ) => void;
   dateRange: [Dayjs | null, Dayjs | null] | null;
+  destination: string;
 }
 
 export function DestinationAndDateStep({
@@ -22,19 +24,17 @@ export function DestinationAndDateStep({
   setDestination,
   setDateRange,
   dateRange,
+  destination,
 }: DestinationAndDateStepProps) {
   return (
     <div className="flex h-16 items-center gap-2 rounded-xl bg-zinc-900 px-4 shadow-shape">
-      <div className="flex w-64 items-center gap-2">
-        <MapPin className="size-5 text-zinc-400" />
-        <input
-          disabled={isGuestsInputOpen}
-          type="text"
-          placeholder="Where are you going?"
-          className="bg-transparent text-lg placeholder-zinc-400 outline-none"
-          onChange={(event) => setDestination(event.target.value)}
-        />
-      </div>
+      <Input
+        Icon={MapPin}
+        type="text"
+        disabled={isGuestsInputOpen}
+        onChange={(event) => setDestination(event.target.value)}
+        placeholder="Where are you going?"
+      />
 
       <div className="flex flex-1 items-center gap-2">
         <Calendar className="size-5 text-zinc-400" />
@@ -57,7 +57,7 @@ export function DestinationAndDateStep({
           <Settings2 className="size-5" />
         </Button>
       ) : (
-        <Button onClick={openGuestsInput}>
+        <Button onClick={openGuestsInput} disabled={!dateRange && !destination}>
           Continue
           <ArrowRight className="sice-5" />
         </Button>

@@ -114,6 +114,7 @@ export function CreateTripPage() {
             setDestination={setDestination}
             setDateRange={setDateRange}
             dateRange={dateRange}
+            destination={destination}
           />
 
           {isGuestsInputOpen && (

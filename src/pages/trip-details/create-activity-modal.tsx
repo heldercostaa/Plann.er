@@ -78,7 +78,7 @@ export function CreateActivityModal({
                 format={`ddd, MMMM Do [at] h:mm A`}
                 showSecond={false}
                 minuteStep={5}
-                suffixIcon
+                suffixIcon={<Calendar />}
                 value={occursAt}
                 onChange={setOccursAt}
                 placeholder="Pick a date and time"

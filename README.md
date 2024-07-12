@@ -28,6 +28,8 @@ npm run dev
 ## Roadmap
 
 - [ ] Create reusable input component
+- [ ] Implement disabled status of button
+- [ ] Implement disabled status of input
 - [ ] Add and List links
 - [ ] Change trip information
 - [ ] Manage guests

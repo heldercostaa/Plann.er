@@ -2,6 +2,7 @@
 import { Mail, User, X } from "lucide-react";
 import { FormEvent } from "react";
 import { Button } from "../../components/button";
+import { Input } from "../../components/input";
 
 interface ConfirmTripModalProps {
   closeConfirmTripModal: () => void;
@@ -33,26 +34,22 @@ export function ConfirmTripModal({
         </div>
 
         <form onSubmit={createTrip} className="space-y-3">
-          <div className="flex h-14 items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-950 px-4">
-            <User className="size-5 text-zinc-400" />
-            <input
-              name="name"
-              placeholder="Your full name"
-              className="w-40 flex-1 bg-transparent text-lg placeholder-zinc-400 outline-none"
-              onChange={(event) => setOwnerName(event.target.value)}
-            />
-          </div>
+          <Input
+            Icon={User}
+            name="name"
+            placeholder="Your full name"
+            onChange={(event) => setOwnerName(event.target.value)}
+            variant="filled"
+          />
 
-          <div className="flex h-14 items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-950 px-4">
-            <Mail className="size-5 text-zinc-400" />
-            <input
-              type="email"
-              name="email"
-              placeholder="Your personal email"
-              className="w-40 flex-1 bg-transparent text-lg placeholder-zinc-400 outline-none"
-              onChange={(event) => setOwnerEmail(event.target.value)}
-            />
-          </div>
+          <Input
+            Icon={Mail}
+            type="email"
+            name="email"
+            placeholder="Your personal email"
+            onChange={(event) => setOwnerEmail(event.target.value)}
+            variant="filled"
+          />
 
           <Button type="submit" size="full">
             Confirm trip creation
