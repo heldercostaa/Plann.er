@@ -21,7 +21,8 @@ npm run dev
 - **Tailwind CSS**: As CSS framework.
 - **React router**: As router lib.
 - **Lucide**: For icon library.
-- **React DayPicker**: To pick calendar dates.
+- **antd**: To use some components (such as date picker).
+- **Axios**: To make API requests.
 - **commitlint**: To force conventional commits.
 - **husky**: To force hooks before push (test and commit message).
 
@@ -39,3 +40,4 @@ npm run dev
 - [ ] Smooth the navigation (button hover, maybe some small animations)
 - [ ] Implement mobile version
 - [ ] Integrate location lib show a dropdown with location sugestion
+- [ ] Improve readme with pictures
