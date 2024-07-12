@@ -1,7 +1,6 @@
 import { DatePicker } from "antd";
 import dayjs, { Dayjs } from "dayjs";
 import { ArrowRight, Calendar, MapPin, Settings2 } from "lucide-react";
-import "react-day-picker/dist/style.css";
 import { Button } from "../../../components/button";
 
 interface DestinationAndDateStepProps {

@@ -27,16 +27,15 @@ npm run dev
 
 ## Roadmap
 
-- [ ] Smooth the navigation (button hover, maybe some small animations)
-- [ ] Change favcon
-- [ ] Implement mobile version
-- [ ] Add loading states
-- [ ] Input validations
-- [ ] Improve refresh when adding new elements to array
+- [ ] Create reusable input component
 - [ ] Add and List links
 - [ ] Change trip information
 - [ ] Manage guests
-- [ ] Create reusable input component
 - [ ] Add outline to selected inputs
 - [ ] Close when click outside the modal
 - [ ] Add transitions to open modal
+- [ ] Add loading states
+- [ ] Input validations
+- [ ] Improve refresh when adding new elements to array
+- [ ] Smooth the navigation (button hover, maybe some small animations)
+- [ ] Implement mobile version
