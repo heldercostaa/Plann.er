@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { Button } from "../../components/button";
 import { api } from "../../lib/axios";
 import { Trip } from "../../types/trip";
+import { Input } from "../../components/input";
 
 interface CreateActivityModalProps {
   closeCreateActivityModal: () => void;
@@ -57,34 +58,30 @@ export function CreateActivityModal({
         </div>
 
         <form onSubmit={createActivity} className="space-y-3">
-          <div className="flex h-14 items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-950 px-4">
-            <Tag className="size-5 text-zinc-400" />
-            <input
-              name="title"
-              placeholder="What is the activity?"
-              className="w-40 flex-1 bg-transparent text-lg placeholder-zinc-400 outline-none"
-            />
-          </div>
+          <Input
+            Icon={Tag}
+            name="title"
+            placeholder="What is the activity?"
+            variant="filled"
+          />
 
-          <div className="flex items-center gap-2">
-            <div className="flex h-14 flex-1 items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-950 px-4">
-              <Calendar className="size-5 text-zinc-400" />
-              <DatePicker
-                size="large"
-                variant="borderless"
-                showTime
-                minDate={dayjs(trip.startsAt)}
-                maxDate={dayjs(trip.endsAt)}
-                format={`ddd, MMMM Do [at] h:mm A`}
-                showSecond={false}
-                minuteStep={5}
-                suffixIcon={<Calendar />}
-                value={occursAt}
-                onChange={setOccursAt}
-                placeholder="Pick a date and time"
-                className="p-0 text-white"
-              />
-            </div>
+          <div className="flex h-14 items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-950 px-5">
+            <Calendar className="size-5 text-zinc-400" />
+            <DatePicker
+              size="large"
+              variant="borderless"
+              showTime={{ use12Hours: false }}
+              minDate={dayjs(trip.startsAt)}
+              maxDate={dayjs(trip.endsAt)}
+              format={`MMMM Do [at] H:mm[h] (dddd)`}
+              showSecond={false}
+              minuteStep={5}
+              suffixIcon={<Calendar />}
+              value={occursAt}
+              onChange={setOccursAt}
+              placeholder="Pick a date and time"
+              className="flex-1 p-0 text-white"
+            />
           </div>
 
           <Button size="full">Create activity</Button>
