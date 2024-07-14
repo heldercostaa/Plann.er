@@ -18,12 +18,6 @@ export function Activities() {
   const { tripId } = useParams();
   const [activities, setActivities] = useState<Activity[]>([]);
 
-  useEffect(() => {
-    api
-      .get(`/trips/${tripId}/activities`)
-      .then((response) => setActivities(response.data.activities));
-  }, [tripId]);
-
   function isPast(date: string) {
     return dayjs().isAfter(date) && !dayjs(date).isToday();
   }
@@ -35,6 +29,12 @@ export function Activities() {
   function isFuture(date: string) {
     return dayjs().isBefore(date);
   }
+
+  useEffect(() => {
+    api
+      .get(`/trips/${tripId}/activities`)
+      .then((response) => setActivities(response.data.activities));
+  }, [tripId]);
 
   return (
     <div className="space-y-8">

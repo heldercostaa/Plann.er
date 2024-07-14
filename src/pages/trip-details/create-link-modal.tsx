@@ -42,7 +42,7 @@ export function CreateLinkModal({
             </button>
           </div>
           <p className="text-sm text-zinc-400">
-            All guests can see the important links.
+            All guests can see the relevant links.
           </p>
         </div>
 

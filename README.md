@@ -28,7 +28,6 @@ npm run dev
 
 ## Roadmap
 
-- [ ] Add and List links
 - [ ] Change trip information
 - [ ] Manage guests
 - [ ] Add outline to selected inputs
