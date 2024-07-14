@@ -28,7 +28,6 @@ npm run dev
 
 ## Roadmap
 
-- [ ] Remove date-fns lib
 - [ ] Add outline to selected inputs
 - [ ] Close when click outside the modal
 - [ ] Add transitions to open modal

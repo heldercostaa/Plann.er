@@ -1,4 +1,3 @@
-import { format } from "date-fns";
 import { CircleCheck, CircleDashed } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -48,10 +47,10 @@ export function Activities() {
               <span
                 className={`text-xl font-semibold ${isPast(date) && "text-zinc-300"} ${isToday(date) && "text-zinc-50"} ${isFuture(date) && "text-zinc-400"}`}
               >
-                {format(date, "MMMM do")}
+                {dayjs(date).format("MMMM Do")}
               </span>
               <span className="text-xs text-zinc-500">
-                {format(date, "cccc")}
+                {dayjs(date).format("dddd")}
               </span>
             </div>
             {activities.length > 0 ? (
@@ -69,7 +68,7 @@ export function Activities() {
                       )}
                       <span className="text-zinc-100">{title}</span>
                       <span className="ml-auto text-sm text-zinc-400">
-                        {format(occursAt, "H:mm")}h
+                        {dayjs(occursAt).format("H:mm")}h
                       </span>
                     </div>
                   );
