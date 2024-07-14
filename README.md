@@ -28,7 +28,6 @@ npm run dev
 
 ## Roadmap
 
-- [ ] Close when click outside the modal
 - [ ] Add transitions to open modal
 - [ ] Add loading states
 - [ ] Input validations

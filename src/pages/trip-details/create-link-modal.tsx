@@ -32,7 +32,7 @@ export function CreateLinkModal({
   }
 
   return (
-    <Modal>
+    <Modal onClose={closeCreateLinkModal}>
       <div className="space-y-2">
         <div className="flex items-center justify-between">
           <h2 className="text-lg font-semibold">Create Link</h2>

@@ -48,7 +48,7 @@ export function ManageGuestsModal({
   }
 
   return (
-    <Modal variant="medium">
+    <Modal variant="medium" onClose={closeManageGuestsModal}>
       <div className="space-y-2">
         <div className="flex items-center justify-between">
           <h2 className="text-lg font-semibold">Manage guests</h2>
