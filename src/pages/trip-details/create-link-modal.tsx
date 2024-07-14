@@ -28,7 +28,6 @@ export function CreateLinkModal({
       url,
     });
 
-    // TODO: Improve refresh page
     window.document.location.reload();
   }
 
@@ -42,7 +41,7 @@ export function CreateLinkModal({
           </button>
         </div>
         <p className="text-sm text-zinc-400">
-          All guests can see the relevant links.
+          All guests can see and add relevant links.
         </p>
       </div>
 

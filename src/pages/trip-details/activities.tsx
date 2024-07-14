@@ -1,4 +1,4 @@
-import { format } from "date-fns"; // TODO: Replace with dayjs
+import { format } from "date-fns";
 import { CircleCheck, CircleDashed } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";

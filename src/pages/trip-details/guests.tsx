@@ -3,22 +3,27 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Button } from "../../components/button";
 import { api } from "../../lib/axios";
-
-interface Participant {
-  id: string;
-  name: string | null;
-  email: string;
-  isConfirmed: boolean;
-}
+import { Participant } from "../../types/participant";
+import { ManageGuestsModal } from "./manage-guests-modal";
 
 export function Guests() {
   const { tripId } = useParams();
   const [participants, setParticipants] = useState<Participant[]>([]);
+  const [isManageGuestsModalOpen, setIsManageGuestsModalOpen] = useState(false);
+
+  function openManageGuestsModal() {
+    setIsManageGuestsModalOpen(true);
+  }
+
+  function closeManageGuestsModal() {
+    setIsManageGuestsModalOpen(false);
+  }
 
   useEffect(() => {
-    api
-      .get(`/trips/${tripId}/participants`)
-      .then((response) => setParticipants(response.data.participants));
+    api.get(`/trips/${tripId}/participants`).then((response) => {
+      console.log(response.data.participants);
+      setParticipants(response.data.participants);
+    });
   }, [tripId]);
 
   return (
@@ -45,11 +50,17 @@ export function Guests() {
           );
         })}
       </div>
-
-      <Button variant="secondary" size="full">
+      <Button variant="secondary" size="full" onClick={openManageGuestsModal}>
         <UserCog className="size-5" />
         Manage guests
       </Button>
+
+      {isManageGuestsModalOpen && (
+        <ManageGuestsModal
+          closeManageGuestsModal={closeManageGuestsModal}
+          participants={participants}
+        />
+      )}
     </div>
   );
 }

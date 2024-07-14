@@ -37,7 +37,6 @@ export function ChangeTripModal({
       endsAt,
     });
 
-    // TODO: Improve refresh page
     window.document.location.reload();
   }
 

@@ -6,7 +6,7 @@ const modalVariants = tv({
 
   variants: {
     variant: {
-      medium: "w-[640px]",
+      medium: "w-[600px]",
       small: "w-[480px]",
     },
   },

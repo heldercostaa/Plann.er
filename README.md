@@ -28,8 +28,7 @@ npm run dev
 
 ## Roadmap
 
-- [ ] Manage guests
-
+- [ ] Remove date-fns lib
 - [ ] Add outline to selected inputs
 - [ ] Close when click outside the modal
 - [ ] Add transitions to open modal
@@ -45,3 +44,5 @@ npm run dev
 - [ ] Delete activities
 - [ ] Delete links
 - [ ] Error handling
+- [ ] Confirm participation
+- [ ] Improve form refresh page

@@ -32,7 +32,6 @@ export function CreateActivityModal({
       occursAt: occursAt.toISOString(),
     });
 
-    // TODO: Improve refresh page
     window.document.location.reload();
   }
 
@@ -46,7 +45,7 @@ export function CreateActivityModal({
           </button>
         </div>
         <p className="text-sm text-zinc-400">
-          All guests can see the activities.
+          All guests can see and add activities.
         </p>
       </div>
 

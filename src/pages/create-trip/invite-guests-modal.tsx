@@ -55,9 +55,9 @@ export function InviteGuestsModal({
         })}
       </div>
 
-      <div className="h-px w-full bg-zinc-800" />
+      {emailsToInvite.length > 0 && <div className="h-px w-full bg-zinc-800" />}
 
-      <div className="flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-950 p-2.5">
+      <div className="flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-950 px-4 py-2.5">
         <Input
           Icon={AtSign}
           placeholder="Enter guest's email"
