@@ -28,7 +28,6 @@ npm run dev
 
 ## Roadmap
 
-- [ ] Change trip information
 - [ ] Manage guests
 
 - [ ] Add outline to selected inputs
@@ -45,3 +44,4 @@ npm run dev
 
 - [ ] Delete activities
 - [ ] Delete links
+- [ ] Error handling

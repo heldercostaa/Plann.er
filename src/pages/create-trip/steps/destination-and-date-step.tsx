@@ -1,5 +1,5 @@
 import { DatePicker } from "antd";
-import dayjs, { Dayjs } from "dayjs";
+import { Dayjs } from "dayjs";
 import { ArrowRight, Calendar, MapPin, Settings2 } from "lucide-react";
 import { Button } from "../../../components/button";
 import { Input } from "../../../components/input";
@@ -42,7 +42,6 @@ export function DestinationAndDateStep({
           size="small"
           variant="borderless"
           disabled={isGuestsInputOpen}
-          minDate={dayjs()}
           format={`ll`}
           suffixIcon
           value={dateRange}

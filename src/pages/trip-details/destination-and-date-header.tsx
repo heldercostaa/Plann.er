@@ -1,8 +1,10 @@
-import dayjs from "dayjs";
 import { Calendar, MapPin, Settings2 } from "lucide-react";
+import { useState } from "react";
 import { Button } from "../../components/button";
+import { dayjs } from "../../lib/dayjs";
 import { Trip } from "../../types/trip";
 import { formatDates } from "../../utils/formatDate";
+import { ChangeTripModal } from "./change-trip-modal";
 
 interface DestinationAndDateHeaderProps {
   trip: Trip;
@@ -11,6 +13,16 @@ interface DestinationAndDateHeaderProps {
 export function DestinationAndDateHeader({
   trip,
 }: DestinationAndDateHeaderProps) {
+  const [isChangeTripModalOpen, setIsChangeTripModalOpen] = useState(false);
+
+  function openChangeTripModal() {
+    setIsChangeTripModalOpen(true);
+  }
+
+  function closeChangeTripModal() {
+    setIsChangeTripModalOpen(false);
+  }
+
   const formattedDate = formatDates({
     startsAt: dayjs(trip.startsAt),
     endsAt: dayjs(trip.endsAt),
@@ -31,10 +43,17 @@ export function DestinationAndDateHeader({
 
         <div className="h-6 w-px bg-zinc-800" />
 
-        <Button variant="secondary">
+        <Button onClick={openChangeTripModal} variant="secondary">
           Change info
           <Settings2 className="size-5" />
         </Button>
+
+        {isChangeTripModalOpen && (
+          <ChangeTripModal
+            closeChangeTripModal={closeChangeTripModal}
+            trip={trip}
+          />
+        )}
       </div>
     </div>
   );
