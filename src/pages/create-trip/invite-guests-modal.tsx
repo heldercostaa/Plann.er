@@ -1,4 +1,5 @@
 import { AtSign, Plus, X } from "lucide-react";
+import { useState } from "react";
 import { Button } from "../../components/button";
 import { Input } from "../../components/input";
 import { Modal } from "../../components/modal";
@@ -21,6 +22,8 @@ export function InviteGuestsModal({
   addNewEmailToInvite,
   removeEmailFromInvites,
 }: InviteGuestsModalProps) {
+  const [isEmailInputFocused, setIsEmailInputFocused] = useState(false);
+
   return (
     <Modal variant="medium">
       <div className="space-y-2">
@@ -57,7 +60,9 @@ export function InviteGuestsModal({
 
       {emailsToInvite.length > 0 && <div className="h-px w-full bg-zinc-800" />}
 
-      <div className="flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-950 px-4 py-2.5">
+      <div
+        className={`flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-950 px-4 py-2.5 ${isEmailInputFocused && "border-lime-300"}`}
+      >
         <Input
           Icon={AtSign}
           placeholder="Enter guest's email"
@@ -65,6 +70,8 @@ export function InviteGuestsModal({
           value={emailToInvite}
           onChange={(event) => setEmailToInvite(event.target.value)}
           onKeyDown={({ key }) => key === "Enter" && addNewEmailToInvite()}
+          onBlur={() => setIsEmailInputFocused(false)}
+          onFocus={() => setIsEmailInputFocused(true)}
         />
         <Button
           onClick={addNewEmailToInvite}

@@ -22,6 +22,7 @@ export function CreateActivityModal({
 
   const [title, setTitle] = useState("");
   const [occursAt, setOccursAt] = useState<Dayjs | undefined>(undefined);
+  const [isCalendarInputFocused, setIsCalendarInputFocused] = useState(false);
 
   async function createActivity() {
     if (!title) return;
@@ -58,7 +59,9 @@ export function CreateActivityModal({
           onChange={(event) => setTitle(event.target.value)}
         />
 
-        <div className="flex h-14 items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-950 px-5">
+        <div
+          className={`flex h-14 items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-950 px-5 ${isCalendarInputFocused && "border-lime-300"}`}
+        >
           <Calendar className="size-5 text-zinc-400" />
           <DatePicker
             size="large"
@@ -72,9 +75,11 @@ export function CreateActivityModal({
             suffixIcon={<Calendar />}
             value={occursAt}
             onChange={setOccursAt}
-            placeholder="Pick a date and time"
+            placeholder="Pick date and time"
             className="flex-1 p-0 text-white"
             inputReadOnly
+            onBlur={() => setIsCalendarInputFocused(false)}
+            onFocus={() => setIsCalendarInputFocused(true)}
           />
         </div>
 

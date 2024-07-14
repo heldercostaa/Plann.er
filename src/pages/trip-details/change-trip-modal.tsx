@@ -25,6 +25,7 @@ export function ChangeTripModal({
   const [dateRange, setDateRange] = useState<
     [Dayjs | null, Dayjs | null] | null
   >([dayjs(trip.startsAt), dayjs(trip.endsAt)]);
+  const [isDateInputFocused, setIsDateInputFocused] = useState(false);
 
   async function changeTrip() {
     if (!destination) return;
@@ -64,7 +65,9 @@ export function ChangeTripModal({
           onChange={(event) => setDestination(event.target.value)}
         />
 
-        <div className="flex h-14 flex-1 items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-950 px-4">
+        <div
+          className={`flex h-14 flex-1 items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-950 px-4 ${isDateInputFocused && "border-lime-300"}`}
+        >
           <Calendar className="size-5 text-zinc-400" />
           <DatePicker.RangePicker
             size="large"
@@ -75,6 +78,8 @@ export function ChangeTripModal({
             onChange={setDateRange}
             className="p-0 text-white placeholder-zinc-400"
             inputReadOnly
+            onBlur={() => setIsDateInputFocused(false)}
+            onFocus={() => setIsDateInputFocused(true)}
           />
         </div>
 

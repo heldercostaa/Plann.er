@@ -9,10 +9,10 @@ import {
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Button } from "../../components/button";
+import { Input } from "../../components/input";
 import { Modal } from "../../components/modal";
 import { api } from "../../lib/axios";
 import { Participant } from "../../types/participant";
-import { Input } from "../../components/input";
 import { isEmailValid } from "../../utils/validateEmail";
 
 interface ManageGuestsModalProps {
@@ -27,6 +27,7 @@ export function ManageGuestsModal({
   const { tripId } = useParams();
 
   const [emailToInvite, setEmailToInvite] = useState("");
+  const [isEmailInputFocused, setIsEmailInputFocused] = useState(false);
 
   async function removeParticipant(participantId: string) {
     if (!participantId) return;
@@ -101,7 +102,9 @@ export function ManageGuestsModal({
 
       <div className="h-px w-full bg-zinc-800" />
 
-      <div className="flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-950 px-4 py-2.5">
+      <div
+        className={`flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-950 px-4 py-2.5 ${isEmailInputFocused && "border-lime-300"}`}
+      >
         <Input
           Icon={AtSign}
           placeholder="Enter guest's email"
@@ -109,6 +112,8 @@ export function ManageGuestsModal({
           value={emailToInvite}
           onChange={(event) => setEmailToInvite(event.target.value)}
           onKeyDown={({ key }) => key === "Enter" && inviteParticipant()}
+          onBlur={() => setIsEmailInputFocused(false)}
+          onFocus={() => setIsEmailInputFocused(true)}
         />
         <Button
           onClick={inviteParticipant}
