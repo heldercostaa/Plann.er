@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Button } from "../../components/button";
 import { Input } from "../../components/input";
+import { Modal } from "../../components/modal";
 import { api } from "../../lib/axios";
 import { isValidUrl } from "../../utils/validateUrl";
 
@@ -32,48 +33,46 @@ export function CreateLinkModal({
   }
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black/60 backdrop-blur-md">
-      <div className="w-[480px] space-y-5 rounded-xl bg-zinc-900 px-6 py-5 shadow-shape">
-        <div className="space-y-2">
-          <div className="flex items-center justify-between">
-            <h2 className="text-lg font-semibold">Create Link</h2>
-            <button type="button" onClick={closeCreateLinkModal}>
-              <X className="size-5 text-zinc-400" />
-            </button>
-          </div>
-          <p className="text-sm text-zinc-400">
-            All guests can see the relevant links.
-          </p>
+    <Modal>
+      <div className="space-y-2">
+        <div className="flex items-center justify-between">
+          <h2 className="text-lg font-semibold">Create Link</h2>
+          <button type="button" onClick={closeCreateLinkModal}>
+            <X className="size-5 text-zinc-400" />
+          </button>
         </div>
-
-        <div className="space-y-3">
-          <Input
-            Icon={Tag}
-            name="title"
-            placeholder="Link title"
-            variant="filled"
-            value={title}
-            onChange={(event) => setTitle(event.target.value)}
-          />
-
-          <Input
-            Icon={Link2}
-            name="link"
-            placeholder="URL"
-            variant="filled"
-            value={url}
-            onChange={(event) => setUrl(event.target.value)}
-          />
-
-          <Button
-            size="full"
-            onClick={createLink}
-            disabled={!isValidUrl(url) || !title}
-          >
-            Create Link
-          </Button>
-        </div>
+        <p className="text-sm text-zinc-400">
+          All guests can see the relevant links.
+        </p>
       </div>
-    </div>
+
+      <div className="space-y-3">
+        <Input
+          Icon={Tag}
+          name="title"
+          placeholder="Link title"
+          variant="filled"
+          value={title}
+          onChange={(event) => setTitle(event.target.value)}
+        />
+
+        <Input
+          Icon={Link2}
+          name="link"
+          placeholder="URL"
+          variant="filled"
+          value={url}
+          onChange={(event) => setUrl(event.target.value)}
+        />
+
+        <Button
+          size="full"
+          onClick={createLink}
+          disabled={!isValidUrl(url) || !title}
+        >
+          Create Link
+        </Button>
+      </div>
+    </Modal>
   );
 }

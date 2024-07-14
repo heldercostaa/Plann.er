@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Button } from "../../components/button";
 import { Input } from "../../components/input";
+import { Modal } from "../../components/modal";
 import { api } from "../../lib/axios";
 import { Trip } from "../../types/trip";
 
@@ -36,58 +37,56 @@ export function CreateActivityModal({
   }
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black/60 backdrop-blur-md">
-      <div className="w-[480px] space-y-5 rounded-xl bg-zinc-900 px-6 py-5 shadow-shape">
-        <div className="space-y-2">
-          <div className="flex items-center justify-between">
-            <h2 className="text-lg font-semibold">Create activity</h2>
-            <button type="button" onClick={closeCreateActivityModal}>
-              <X className="size-5 text-zinc-400" />
-            </button>
-          </div>
-          <p className="text-sm text-zinc-400">
-            All guests can see the activities.
-          </p>
+    <Modal>
+      <div className="space-y-2">
+        <div className="flex items-center justify-between">
+          <h2 className="text-lg font-semibold">Create activity</h2>
+          <button type="button" onClick={closeCreateActivityModal}>
+            <X className="size-5 text-zinc-400" />
+          </button>
         </div>
-
-        <div className="space-y-3">
-          <Input
-            Icon={Tag}
-            name="title"
-            placeholder="What is the activity?"
-            variant="filled"
-            onChange={(event) => setTitle(event.target.value)}
-          />
-
-          <div className="flex h-14 items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-950 px-5">
-            <Calendar className="size-5 text-zinc-400" />
-            <DatePicker
-              size="large"
-              variant="borderless"
-              showTime={{ use12Hours: false }}
-              minDate={dayjs(trip.startsAt)}
-              maxDate={dayjs(trip.endsAt)}
-              format={`MMMM Do [at] H:mm[h] (dddd)`}
-              showSecond={false}
-              minuteStep={5}
-              suffixIcon={<Calendar />}
-              value={occursAt}
-              onChange={setOccursAt}
-              placeholder="Pick a date and time"
-              className="flex-1 p-0 text-white"
-              inputReadOnly
-            />
-          </div>
-
-          <Button
-            size="full"
-            onClick={createActivity}
-            disabled={!occursAt || !title}
-          >
-            Create activity
-          </Button>
-        </div>
+        <p className="text-sm text-zinc-400">
+          All guests can see the activities.
+        </p>
       </div>
-    </div>
+
+      <div className="space-y-3">
+        <Input
+          Icon={Tag}
+          name="title"
+          placeholder="What is the activity?"
+          variant="filled"
+          onChange={(event) => setTitle(event.target.value)}
+        />
+
+        <div className="flex h-14 items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-950 px-5">
+          <Calendar className="size-5 text-zinc-400" />
+          <DatePicker
+            size="large"
+            variant="borderless"
+            showTime={{ use12Hours: false }}
+            minDate={dayjs(trip.startsAt)}
+            maxDate={dayjs(trip.endsAt)}
+            format={`MMMM Do [at] H:mm[h] (dddd)`}
+            showSecond={false}
+            minuteStep={5}
+            suffixIcon={<Calendar />}
+            value={occursAt}
+            onChange={setOccursAt}
+            placeholder="Pick a date and time"
+            className="flex-1 p-0 text-white"
+            inputReadOnly
+          />
+        </div>
+
+        <Button
+          size="full"
+          onClick={createActivity}
+          disabled={!occursAt || !title}
+        >
+          Create activity
+        </Button>
+      </div>
+    </Modal>
   );
 }

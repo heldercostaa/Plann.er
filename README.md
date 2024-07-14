@@ -30,6 +30,7 @@ npm run dev
 
 - [ ] Change trip information
 - [ ] Manage guests
+
 - [ ] Add outline to selected inputs
 - [ ] Close when click outside the modal
 - [ ] Add transitions to open modal
@@ -41,3 +42,6 @@ npm run dev
 - [ ] Integrate location lib show a dropdown with location sugestion
 - [ ] Improve readme with pictures
 - [ ] Improve .env validation
+
+- [ ] Delete activities
+- [ ] Delete links

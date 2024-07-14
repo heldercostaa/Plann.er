@@ -58,7 +58,10 @@ export function DestinationAndDateStep({
           <Settings2 className="size-5" />
         </Button>
       ) : (
-        <Button onClick={openGuestsInput} disabled={!dateRange || !destination}>
+        <Button
+          onClick={openGuestsInput}
+          disabled={!dateRange || !(destination?.length >= 4)}
+        >
           Continue
           <ArrowRight className="sice-5" />
         </Button>
