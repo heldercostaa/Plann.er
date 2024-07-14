@@ -41,3 +41,4 @@ npm run dev
 - [ ] Implement mobile version
 - [ ] Integrate location lib show a dropdown with location sugestion
 - [ ] Improve readme with pictures
+- [ ] Improve .env validation

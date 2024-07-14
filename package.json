@@ -4,6 +4,9 @@
   "description": "Plann.er App to manage trips with participants, activities, links and more.",
   "author": "Helder Costa",
   "type": "module",
+  "engines": {
+    "node": ">=20.15.1"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",

@@ -1,7 +1,18 @@
 import { Link2, Plus } from "lucide-react";
 import { Button } from "../../components/button";
+import { useState } from "react";
+import { CreateLinkModal } from "./create-link-modal";
 
 export function RelevantLinks() {
+  const [isCreateLinkModalOpen, setIsCreateLinkModalOpen] = useState(false);
+
+  function openCreateLinkModal() {
+    setIsCreateLinkModalOpen(true);
+  }
+
+  function closeCreateLinkModal() {
+    setIsCreateLinkModalOpen(false);
+  }
   return (
     <div className="space-y-5">
       <h2 className="text-2xl font-semibold">Relevant Links</h2>
@@ -36,10 +47,14 @@ export function RelevantLinks() {
         </div>
       </div>
 
-      <Button variant="secondary" size="full">
+      <Button variant="secondary" size="full" onClick={openCreateLinkModal}>
         <Plus className="size-5" />
         Add new link
       </Button>
+
+      {isCreateLinkModalOpen && (
+        <CreateLinkModal closeCreateLinkModal={closeCreateLinkModal} />
+      )}
     </div>
   );
 }

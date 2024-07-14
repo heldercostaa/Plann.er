@@ -19,7 +19,7 @@ export function CreateActivityModal({
 }: CreateActivityModalProps) {
   const { tripId } = useParams();
 
-  const [title, setTitle] = useState<string>("");
+  const [title, setTitle] = useState("");
   const [occursAt, setOccursAt] = useState<Dayjs | undefined>(undefined);
 
   async function createActivity() {
