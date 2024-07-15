@@ -1,8 +1,8 @@
 import { DatePicker, Tooltip } from "antd";
 import { Dayjs } from "dayjs";
-import { ArrowRight, Calendar, MapPin, Settings2 } from "lucide-react";
+import { ArrowRight, Calendar, Settings2 } from "lucide-react";
 import { Button } from "../../../components/button";
-import { Input } from "../../../components/input";
+import { LocationDropdown } from "../../../components/location-dropdown";
 
 interface DestinationAndDateStepProps {
   isGuestsInputOpen: boolean;
@@ -28,11 +28,11 @@ export function DestinationAndDateStep({
 }: DestinationAndDateStepProps) {
   return (
     <div className="flex h-16 items-center gap-2 rounded-xl bg-zinc-900 px-4 shadow-shape">
-      <Input
-        Icon={MapPin}
-        type="text"
+      <LocationDropdown
+        destination={destination}
+        setDestination={setDestination}
         disabled={isGuestsInputOpen}
-        onChange={(event) => setDestination(event.target.value)}
+        inputVariant="borderless"
         placeholder="Where are you going?"
       />
 

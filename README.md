@@ -28,10 +28,6 @@ npm run dev
 
 ## Roadmap
 
-- [ ] Improve refresh when adding new elements to array
-- [ ] Smooth the navigation (button hover, maybe some small animations)
-- [ ] Implement mobile version
-- [ ] Integrate location lib show a dropdown with location sugestion
 - [ ] Improve readme with pictures
 - [ ] Improve .env validation
 
@@ -40,3 +36,5 @@ npm run dev
 - [ ] Error handling
 - [ ] Confirm participation
 - [ ] Loading screen placeholders
+
+- [ ] Implement mobile version

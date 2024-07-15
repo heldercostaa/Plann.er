@@ -6,10 +6,6 @@
   min-width: 0;
 }
 
-input {
-  color-scheme: dark;
-}
-
 .rdp {
   --rdp-accent-color: #1a2e05;
   --rdp-accent-color-dark: #1a2e05;

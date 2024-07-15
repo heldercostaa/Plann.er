@@ -10,6 +10,7 @@ import { api } from "../../lib/axios";
 import { dayjs } from "../../lib/dayjs";
 import { Trip } from "../../types/trip";
 import { Spin } from "../../components/spin";
+import { LocationDropdown } from "../../components/location-dropdown";
 
 interface UpdateTripModalProps {
   closeUpdateTripModal: () => void;
@@ -70,13 +71,11 @@ export function UpdateTripModal({
       </div>
 
       <div className="space-y-3">
-        <Input
-          Icon={MapPin}
-          name="destination"
+        <LocationDropdown
+          destination={destination}
+          setDestination={setDestination}
+          inputVariant="filled"
           placeholder="Trip destination"
-          value={destination}
-          variant="filled"
-          onChange={(event) => setDestination(event.target.value)}
         />
 
         <div
