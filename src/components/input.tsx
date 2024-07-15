@@ -43,12 +43,10 @@ export function Input({
   const [isFocused, setIsFocused] = useState(false);
 
   function _onFocus() {
-    console.log("isFocused", isFocused);
     return setIsFocused(true);
   }
 
   function _onBlur() {
-    console.log("isFocused", isFocused);
     setIsFocused(false);
   }
 
