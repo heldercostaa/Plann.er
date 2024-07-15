@@ -1,10 +1,10 @@
 // prettier-ignore
-import { Spin } from "antd";
-import { LoaderCircle, Mail, User, X } from "lucide-react";
+import { Mail, User, X } from "lucide-react";
 import { FormEvent, useRef } from "react";
 import { Button } from "../../components/button";
 import { Input } from "../../components/input";
 import { Modal } from "../../components/modal";
+import { Spin } from "../../components/spin";
 import { isEmailValid } from "../../utils/validateEmail";
 
 interface ConfirmTripModalProps {
@@ -72,10 +72,7 @@ export function ConfirmTripModal({
           inputRef={emailInputRef}
         />
 
-        <Spin
-          spinning={isLoading}
-          indicator={<LoaderCircle className="animate-spin" />}
-        >
+        <Spin isLoading={isLoading}>
           <Button
             type="submit"
             size="full"

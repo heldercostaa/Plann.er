@@ -11,6 +11,7 @@ import { useParams } from "react-router-dom";
 import { Button } from "../../components/button";
 import { Input } from "../../components/input";
 import { Modal } from "../../components/modal";
+import { Spin } from "../../components/spin";
 import { api } from "../../lib/axios";
 import { Participant } from "../../types/participant";
 import { isEmailValid } from "../../utils/validateEmail";
@@ -30,23 +31,38 @@ export function ManageGuestsModal({
 
   const [emailToInvite, setEmailToInvite] = useState("");
   const [isEmailInputFocused, setIsEmailInputFocused] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   async function removeParticipant(participantId: string) {
     if (!participantId) return;
 
-    await api.delete(`/participants/${participantId}`);
+    setIsLoading(true);
+    try {
+      await api.delete(`/participants/${participantId}`);
 
-    window.document.location.reload();
+      window.document.location.reload();
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   async function inviteParticipant() {
     if (!emailToInvite) return;
 
-    await api.post(`/trips/${tripId}/invites`, {
-      email: emailToInvite,
-    });
+    setIsLoading(true);
+    try {
+      await api.post(`/trips/${tripId}/invites`, {
+        email: emailToInvite,
+      });
 
-    window.document.location.reload();
+      window.document.location.reload();
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (
@@ -99,7 +115,7 @@ export function ManageGuestsModal({
                     )}
                     <Trash2
                       onClick={() => removeParticipant(id)}
-                      className={`size-0 shrink-0 cursor-pointer text-red-600 opacity-0 transition-opacity ease-in group-hover:size-5 group-hover:opacity-100`}
+                      className={`size-0 shrink-0 text-red-600 opacity-0 transition-opacity ease-in group-hover:size-5 ${isLoading ? "cursor-wait group-hover:opacity-30" : "cursor-pointer group-hover:opacity-100"}`}
                     />
                   </div>
                 )}
@@ -124,16 +140,24 @@ export function ManageGuestsModal({
           onBlur={() => setIsEmailInputFocused(false)}
           onFocus={() => setIsEmailInputFocused(true)}
         />
-        <Button
-          onClick={inviteParticipant}
-          disabled={
-            !isEmailValid(emailToInvite) ||
-            !!participants.find(({ email }) => email === emailToInvite)
-          }
-        >
-          Invite
-          <Plus className="size-5 min-h-5" />
-        </Button>
+        <Spin isLoading={isLoading}>
+          <Button
+            size="small"
+            onClick={inviteParticipant}
+            disabled={
+              !isEmailValid(emailToInvite) ||
+              !!participants.find(({ email }) => email === emailToInvite) ||
+              isLoading
+            }
+          >
+            {!isLoading && (
+              <>
+                Invite
+                <Plus className="size-5 min-h-5" />
+              </>
+            )}
+          </Button>
+        </Spin>
       </div>
     </Modal>
   );
