@@ -4,20 +4,17 @@ import { CreateTripPage } from "./pages/create-trip";
 import { ErrorPage } from "./pages/error";
 import { TripDetailsPage } from "./pages/trip-details/index";
 
-const router = createBrowserRouter(
-  [
-    {
-      path: "/",
-      element: <CreateTripPage />,
-      errorElement: <ErrorPage />,
-    },
-    {
-      path: "/trips/:tripId",
-      element: <TripDetailsPage />,
-    },
-  ],
-  { basename: import.meta.env.DEV ? "/" : "/Plann.er/" },
-);
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <CreateTripPage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/trips/:tripId",
+    element: <TripDetailsPage />,
+  },
+]);
 
 export function App() {
   return (

@@ -101,10 +101,7 @@ export function CreateTripPage() {
     <div className="flex h-screen items-center justify-center bg-pattern bg-center bg-no-repeat">
       <div className="w-full max-w-3xl space-y-10 px-6 text-center">
         <div className="flex flex-col items-center gap-3">
-          <img
-            src={`${import.meta.env.DEV ? "/" : "/Plann.er/"}logo.svg`}
-            alt="Plann.er"
-          />
+          <img src={`/logo.svg`} alt="Plann.er" />
           <p className="text-lg text-zinc-300">
             Invite your friends and plan your own trips!
           </p>
