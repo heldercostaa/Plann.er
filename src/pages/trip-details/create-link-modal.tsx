@@ -6,6 +6,7 @@ import { Input } from "../../components/input";
 import { Modal } from "../../components/modal";
 import { api } from "../../lib/axios";
 import { isValidUrl } from "../../utils/validateUrl";
+import { Spin } from "../../components/spin";
 
 interface CreateLinkModalProps {
   closeCreateLinkModal: () => void;
@@ -20,17 +21,25 @@ export function CreateLinkModal({
 
   const [title, setTitle] = useState("");
   const [url, setUrl] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   async function createLink() {
     if (!title) return;
     if (!url) return;
 
-    await api.post(`/trips/${tripId}/links`, {
-      title,
-      url,
-    });
+    setIsLoading(true);
+    try {
+      await api.post(`/trips/${tripId}/links`, {
+        title,
+        url,
+      });
 
-    window.document.location.reload();
+      window.document.location.reload();
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (
@@ -66,13 +75,15 @@ export function CreateLinkModal({
           onChange={(event) => setUrl(event.target.value)}
         />
 
-        <Button
-          size="full"
-          onClick={createLink}
-          disabled={!isValidUrl(url) || !title}
-        >
-          Create Link
-        </Button>
+        <Spin isLoading={isLoading}>
+          <Button
+            size="full"
+            onClick={createLink}
+            disabled={!isValidUrl(url) || !title || isLoading}
+          >
+            {!isLoading && "Create Link"}
+          </Button>
+        </Spin>
       </div>
     </Modal>
   );

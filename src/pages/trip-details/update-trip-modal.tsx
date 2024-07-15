@@ -9,18 +9,19 @@ import { Modal } from "../../components/modal";
 import { api } from "../../lib/axios";
 import { dayjs } from "../../lib/dayjs";
 import { Trip } from "../../types/trip";
+import { Spin } from "../../components/spin";
 
-interface ChangeTripModalProps {
-  closeChangeTripModal: () => void;
+interface UpdateTripModalProps {
+  updateTripModal: () => void;
   trip: Trip;
   isOpen: boolean;
 }
 
-export function ChangeTripModal({
-  closeChangeTripModal,
+export function UpdateTripModal({
+  updateTripModal,
   trip,
   isOpen,
-}: ChangeTripModalProps) {
+}: UpdateTripModalProps) {
   const { tripId } = useParams();
 
   const [destination, setDestination] = useState(trip.destination);
@@ -28,27 +29,35 @@ export function ChangeTripModal({
     [Dayjs | null, Dayjs | null] | null
   >([dayjs(trip.startsAt), dayjs(trip.endsAt)]);
   const [isDateInputFocused, setIsDateInputFocused] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  async function changeTrip() {
+  async function updateTrip() {
     if (!destination) return;
     if (!dateRange) return;
     const [startsAt, endsAt] = dateRange;
 
-    await api.put(`/trips/${tripId}`, {
-      destination,
-      startsAt,
-      endsAt,
-    });
+    setIsLoading(true);
+    try {
+      await api.put(`/trips/${tripId}`, {
+        destination,
+        startsAt,
+        endsAt,
+      });
 
-    window.document.location.reload();
+      window.document.location.reload();
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (
-    <Modal onClose={closeChangeTripModal} isOpen={isOpen}>
+    <Modal onClose={updateTripModal} isOpen={isOpen}>
       <div className="space-y-2">
         <div className="flex items-center justify-between">
           <h2 className="text-lg font-semibold">Change trip information</h2>
-          <button type="button" onClick={closeChangeTripModal}>
+          <button type="button" onClick={updateTripModal}>
             <X className="size-5 text-zinc-400" />
           </button>
         </div>
@@ -85,13 +94,15 @@ export function ChangeTripModal({
           />
         </div>
 
-        <Button
-          size="full"
-          onClick={changeTrip}
-          disabled={!dateRange || !(destination.length >= 4)}
-        >
-          Update trip
-        </Button>
+        <Spin isLoading={isLoading}>
+          <Button
+            size="full"
+            onClick={updateTrip}
+            disabled={!dateRange || !(destination.length >= 4 || isLoading)}
+          >
+            {!isLoading && "Update trip"}
+          </Button>
+        </Spin>
       </div>
     </Modal>
   );

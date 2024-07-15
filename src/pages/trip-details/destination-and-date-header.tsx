@@ -4,7 +4,7 @@ import { Button } from "../../components/button";
 import { dayjs } from "../../lib/dayjs";
 import { Trip } from "../../types/trip";
 import { formatDates } from "../../utils/formatDate";
-import { ChangeTripModal } from "./change-trip-modal";
+import { UpdateTripModal } from "./update-trip-modal";
 
 interface DestinationAndDateHeaderProps {
   trip: Trip;
@@ -13,14 +13,14 @@ interface DestinationAndDateHeaderProps {
 export function DestinationAndDateHeader({
   trip,
 }: DestinationAndDateHeaderProps) {
-  const [isChangeTripModalOpen, setIsChangeTripModalOpen] = useState(false);
+  const [isUpdateTripModalOpen, setIsUpdateTripModalOpen] = useState(false);
 
-  function openChangeTripModal() {
-    setIsChangeTripModalOpen(true);
+  function openUpdateTripModal() {
+    setIsUpdateTripModalOpen(true);
   }
 
-  function closeChangeTripModal() {
-    setIsChangeTripModalOpen(false);
+  function closeUpdateTripModal() {
+    setIsUpdateTripModalOpen(false);
   }
 
   const formattedDate = formatDates({
@@ -43,16 +43,16 @@ export function DestinationAndDateHeader({
 
         <div className="h-6 w-px bg-zinc-800" />
 
-        <Button onClick={openChangeTripModal} variant="secondary">
+        <Button onClick={openUpdateTripModal} variant="secondary">
           Change info
           <Settings2 className="size-5" />
         </Button>
 
-        {isChangeTripModalOpen && (
-          <ChangeTripModal
-            closeChangeTripModal={closeChangeTripModal}
+        {isUpdateTripModalOpen && (
+          <UpdateTripModal
+            updateTripModal={closeUpdateTripModal}
             trip={trip}
-            isOpen={isChangeTripModalOpen}
+            isOpen={isUpdateTripModalOpen}
           />
         )}
       </div>

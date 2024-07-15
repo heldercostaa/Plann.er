@@ -98,7 +98,7 @@ export function CreateActivityModal({
           <Button
             size="full"
             onClick={createActivity}
-            disabled={!occursAt || !title}
+            disabled={!occursAt || !title || isLoading}
           >
             {!isLoading && "Create activity"}
           </Button>

@@ -33,8 +33,8 @@ export function Modal({ children, variant, onClose, isOpen }: ModalProps) {
       mask
       styles={{
         mask: {
-          backgroundColor: "@apply bg-black/60",
-          backdropFilter: "@apply blur-md",
+          backgroundColor: "rgb(0 0 0 / 0.6)",
+          backdropFilter: "blur(12px)",
         },
         content: {
           backgroundColor: "transparent",

@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  @apply transition-colors duration-300 ease-in-out;
-}
-
 *:not(.ant-picker-range-separator) {
   min-width: 0;
 }
