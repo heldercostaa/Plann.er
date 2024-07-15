@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "Plann.er App to manage trips with participants, activities, links and more.",
   "author": "Helder Costa",
-  "homepage": "https://heldercostaa.github.io/Plann.er/",
+  "homepage": "https://heldercostaa.github.io/Plann.er",
   "type": "module",
+  "private": false,
   "engines": {
     "node": ">=20.15.1"
   },
