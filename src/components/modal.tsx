@@ -1,3 +1,4 @@
+import { Modal as AntdModal } from "antd";
 import { ReactNode } from "react";
 import { tv, VariantProps } from "tailwind-variants";
 
@@ -17,21 +18,32 @@ const modalVariants = tv({
 
 interface ModalProps extends VariantProps<typeof modalVariants> {
   children: ReactNode;
+  isOpen: boolean;
   onClose: () => void;
 }
 
-export function Modal({ children, variant, onClose }: ModalProps) {
+export function Modal({ children, variant, onClose, isOpen }: ModalProps) {
   return (
-    <div
-      className="fixed inset-0 z-10 flex items-center justify-center bg-black/60 backdrop-blur-md"
-      onClick={onClose}
+    <AntdModal
+      open={isOpen}
+      footer={null}
+      centered
+      closable={false}
+      onCancel={onClose}
+      mask
+      styles={{
+        mask: {
+          backgroundColor: "rgb(0 0 0 / 0.6)",
+          backdropFilter: "blur(12px)",
+        },
+        content: {
+          backgroundColor: "transparent",
+          padding: 0,
+          boxShadow: "none",
+        },
+      }}
     >
-      <div
-        onClick={(e) => e.stopPropagation()}
-        className={modalVariants({ variant })}
-      >
-        {children}
-      </div>
-    </div>
+      <div className={modalVariants({ variant })}>{children}</div>
+    </AntdModal>
   );
 }

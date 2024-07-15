@@ -28,7 +28,6 @@ npm run dev
 
 ## Roadmap
 
-- [ ] Add transitions to open modal
 - [ ] Add loading states
 - [ ] Input validations
 - [ ] Improve refresh when adding new elements to array

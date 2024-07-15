@@ -9,10 +9,12 @@ import { isValidUrl } from "../../utils/validateUrl";
 
 interface CreateLinkModalProps {
   closeCreateLinkModal: () => void;
+  isOpen: boolean;
 }
 
 export function CreateLinkModal({
   closeCreateLinkModal,
+  isOpen,
 }: CreateLinkModalProps) {
   const { tripId } = useParams();
 
@@ -32,7 +34,7 @@ export function CreateLinkModal({
   }
 
   return (
-    <Modal onClose={closeCreateLinkModal}>
+    <Modal onClose={closeCreateLinkModal} isOpen={isOpen}>
       <div className="space-y-2">
         <div className="flex items-center justify-between">
           <h2 className="text-lg font-semibold">Create Link</h2>

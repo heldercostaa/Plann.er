@@ -132,6 +132,7 @@ export function CreateTripPage() {
 
       {isGuestsModalOpen && (
         <InviteGuestsModal
+          isOpen={isGuestsModalOpen}
           closeGuestsModal={closeGuestsModal}
           emailToInvite={emailToInvite}
           setEmailToInvite={setEmailToInvite}
@@ -143,6 +144,7 @@ export function CreateTripPage() {
 
       {isConfirmTripModalOpen && (
         <ConfirmTripModal
+          isOpen={isConfirmTripModalOpen}
           closeConfirmTripModal={closeConfirmTripModal}
           createTrip={createTrip}
           setOwnerName={setOwnerName}

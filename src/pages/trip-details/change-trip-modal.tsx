@@ -13,11 +13,13 @@ import { Trip } from "../../types/trip";
 interface ChangeTripModalProps {
   closeChangeTripModal: () => void;
   trip: Trip;
+  isOpen: boolean;
 }
 
 export function ChangeTripModal({
   closeChangeTripModal,
   trip,
+  isOpen,
 }: ChangeTripModalProps) {
   const { tripId } = useParams();
 
@@ -42,7 +44,7 @@ export function ChangeTripModal({
   }
 
   return (
-    <Modal onClose={closeChangeTripModal}>
+    <Modal onClose={closeChangeTripModal} isOpen={isOpen}>
       <div className="space-y-2">
         <div className="flex items-center justify-between">
           <h2 className="text-lg font-semibold">Change trip information</h2>

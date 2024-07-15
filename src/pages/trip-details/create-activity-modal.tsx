@@ -12,11 +12,13 @@ import { Trip } from "../../types/trip";
 interface CreateActivityModalProps {
   closeCreateActivityModal: () => void;
   trip: Trip;
+  isOpen: boolean;
 }
 
 export function CreateActivityModal({
   closeCreateActivityModal,
   trip,
+  isOpen,
 }: CreateActivityModalProps) {
   const { tripId } = useParams();
 
@@ -37,7 +39,7 @@ export function CreateActivityModal({
   }
 
   return (
-    <Modal onClose={closeCreateActivityModal}>
+    <Modal onClose={closeCreateActivityModal} isOpen={isOpen}>
       <div className="space-y-2">
         <div className="flex items-center justify-between">
           <h2 className="text-lg font-semibold">Create activity</h2>

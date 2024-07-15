@@ -18,11 +18,13 @@ import { isEmailValid } from "../../utils/validateEmail";
 interface ManageGuestsModalProps {
   closeManageGuestsModal: () => void;
   participants: Participant[];
+  isOpen: boolean;
 }
 
 export function ManageGuestsModal({
   closeManageGuestsModal,
   participants,
+  isOpen,
 }: ManageGuestsModalProps) {
   const { tripId } = useParams();
 
@@ -48,7 +50,7 @@ export function ManageGuestsModal({
   }
 
   return (
-    <Modal variant="medium" onClose={closeManageGuestsModal}>
+    <Modal variant="medium" onClose={closeManageGuestsModal} isOpen={isOpen}>
       <div className="space-y-2">
         <div className="flex items-center justify-between">
           <h2 className="text-lg font-semibold">Manage guests</h2>

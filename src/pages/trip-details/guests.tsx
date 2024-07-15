@@ -21,7 +21,6 @@ export function Guests() {
 
   useEffect(() => {
     api.get(`/trips/${tripId}/participants`).then((response) => {
-      console.log(response.data.participants);
       setParticipants(response.data.participants);
     });
   }, [tripId]);
@@ -59,6 +58,7 @@ export function Guests() {
         <ManageGuestsModal
           closeManageGuestsModal={closeManageGuestsModal}
           participants={participants}
+          isOpen={isManageGuestsModalOpen}
         />
       )}
     </div>

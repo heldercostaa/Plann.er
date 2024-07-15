@@ -7,6 +7,7 @@ import { Modal } from "../../components/modal";
 import { isEmailValid } from "../../utils/validateEmail";
 
 interface ConfirmTripModalProps {
+  isOpen: boolean;
   closeConfirmTripModal: () => void;
   createTrip: (event: FormEvent<HTMLFormElement>) => void;
   setOwnerName: (name: string) => void;
@@ -18,6 +19,7 @@ export function ConfirmTripModal({
   createTrip,
   setOwnerName,
   setOwnerEmail,
+  isOpen,
 }: ConfirmTripModalProps) {
   const nameInputRef = useRef<HTMLInputElement>(null);
   const emailInputRef = useRef<HTMLInputElement>(null);
@@ -33,7 +35,7 @@ export function ConfirmTripModal({
   }
 
   return (
-    <Modal onClose={closeConfirmTripModal}>
+    <Modal onClose={closeConfirmTripModal} isOpen={isOpen}>
       <div className="space-y-2">
         <div className="flex items-center justify-between">
           <h2 className="text-lg font-semibold">Confirm trip creation</h2>

@@ -52,6 +52,7 @@ export function DestinationAndDateHeader({
           <ChangeTripModal
             closeChangeTripModal={closeChangeTripModal}
             trip={trip}
+            isOpen={isChangeTripModalOpen}
           />
         )}
       </div>

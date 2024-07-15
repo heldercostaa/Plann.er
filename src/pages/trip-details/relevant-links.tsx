@@ -59,7 +59,10 @@ export function RelevantLinks() {
       </Button>
 
       {isCreateLinkModalOpen && (
-        <CreateLinkModal closeCreateLinkModal={closeCreateLinkModal} />
+        <CreateLinkModal
+          closeCreateLinkModal={closeCreateLinkModal}
+          isOpen={isCreateLinkModalOpen}
+        />
       )}
     </div>
   );

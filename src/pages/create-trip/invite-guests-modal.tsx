@@ -12,6 +12,7 @@ interface InviteGuestsModalProps {
   emailsToInvite: string[];
   addNewEmailToInvite: () => void;
   removeEmailFromInvites: (email: string) => void;
+  isOpen: boolean;
 }
 
 export function InviteGuestsModal({
@@ -21,11 +22,12 @@ export function InviteGuestsModal({
   emailsToInvite,
   addNewEmailToInvite,
   removeEmailFromInvites,
+  isOpen,
 }: InviteGuestsModalProps) {
   const [isEmailInputFocused, setIsEmailInputFocused] = useState(false);
 
   return (
-    <Modal variant="medium" onClose={closeGuestsModal}>
+    <Modal variant="medium" onClose={closeGuestsModal} isOpen={isOpen}>
       <div className="space-y-2">
         <div className="flex items-center justify-between">
           <h2 className="text-lg font-semibold">Invite guests</h2>
