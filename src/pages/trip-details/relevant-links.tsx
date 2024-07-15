@@ -2,18 +2,16 @@ import { Link2, Plus } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Button } from "../../components/button";
-import { api } from "../../lib/axios";
+import { Link } from "../../types/links";
 import { CreateLinkModal } from "./create-link-modal";
 
-interface Link {
-  id: string;
-  title: string;
-  url: string;
+interface RelevantLinksProps {
+  links: Link[];
+  getLinks: () => void;
 }
 
-export function RelevantLinks() {
+export function RelevantLinks({ links, getLinks }: RelevantLinksProps) {
   const { tripId } = useParams();
-  const [links, setLinks] = useState<Link[]>([]);
   const [isCreateLinkModalOpen, setIsCreateLinkModalOpen] = useState(false);
 
   function openCreateLinkModal() {
@@ -24,11 +22,7 @@ export function RelevantLinks() {
     setIsCreateLinkModalOpen(false);
   }
 
-  useEffect(() => {
-    api
-      .get(`/trips/${tripId}/links`)
-      .then((response) => setLinks(response.data.links));
-  }, [tripId]);
+  useEffect(() => {}, [tripId]);
 
   return (
     <div className="space-y-5">
@@ -62,6 +56,7 @@ export function RelevantLinks() {
         <CreateLinkModal
           closeCreateLinkModal={closeCreateLinkModal}
           isOpen={isCreateLinkModalOpen}
+          getLinks={getLinks}
         />
       )}
     </div>

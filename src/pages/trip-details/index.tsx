@@ -10,11 +10,13 @@ import { CreateActivityModal } from "./create-activity-modal";
 import { DestinationAndDateHeader } from "./destination-and-date-header";
 import { Guests } from "./guests";
 import { RelevantLinks } from "./relevant-links";
+import { Link } from "../../types/links";
 
 export function TripDetailsPage() {
   const { tripId } = useParams();
   const [trip, setTrip] = useState<Trip | undefined>(undefined);
   const [activities, setActivities] = useState<Activity[]>([]);
+  const [links, setLinks] = useState<Link[]>([]);
 
   const [isCreateActivityModalOpen, setIsCreateActivityModalOpen] =
     useState(false);
@@ -33,9 +35,16 @@ export function TripDetailsPage() {
       .then((response) => setActivities(response.data.activities));
   }
 
+  async function getLinks() {
+    api
+      .get(`/trips/${tripId}/links`)
+      .then((response) => setLinks(response.data.links));
+  }
+
   useEffect(() => {
     api.get(`/trips/${tripId}`).then((response) => setTrip(response.data.trip));
     getActivities();
+    getLinks();
   }, [tripId]);
 
   if (!trip) return;
@@ -59,7 +68,7 @@ export function TripDetailsPage() {
         </div>
 
         <div className="w-80 space-y-6">
-          <RelevantLinks />
+          <RelevantLinks links={links} getLinks={getLinks} />
 
           <div className="h-px w-full bg-zinc-800" />
 
