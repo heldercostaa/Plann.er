@@ -61,13 +61,13 @@ export function ManageGuestsModal({
         <p className="text-sm text-zinc-400">Invite or remove your guests.</p>
       </div>
 
-      <div className="space-y-4 rounded-lg border border-zinc-800 bg-zinc-950 p-4">
+      <div className="rounded-lg border border-zinc-800 bg-zinc-950 p-4">
         {participants?.map(
           ({ id, email, name, isConfirmed, isOwner }, index) => {
             return (
               <div
                 key={id}
-                className="group flex flex-1 items-center justify-between gap-4"
+                className="group flex flex-1 items-center justify-between gap-4 py-2.5"
               >
                 <div className="space-y-1.5">
                   <span className="block font-medium text-zinc-100">
@@ -78,23 +78,30 @@ export function ManageGuestsModal({
                   </span>
                 </div>
 
-                {isConfirmed ? (
-                  <CheckCircle2
-                    className={`size-5 shrink-0 text-green-400 ${!isOwner && "group-hover:hidden"}`}
-                  />
-                ) : (
-                  <CircleDashed
-                    className={`size-5 shrink-0 text-zinc-400 ${!isOwner && "group-hover:hidden"}`}
-                  />
-                )}
-
-                {!isOwner && (
-                  <span className="hidden group-hover:block">
-                    <Trash2
-                      className="size-5 shrink-0 cursor-pointer text-red-600"
-                      onClick={() => removeParticipant(id)}
+                {isOwner ? (
+                  isConfirmed ? (
+                    <CheckCircle2
+                      className={`size-5 shrink-0 text-green-400`}
                     />
-                  </span>
+                  ) : (
+                    <CircleDashed className={`size-5 shrink-0 text-zinc-400`} />
+                  )
+                ) : (
+                  <div>
+                    {isConfirmed ? (
+                      <CheckCircle2
+                        className={`size-5 shrink-0 text-green-400 opacity-100 transition-opacity ease-in group-hover:size-0 group-hover:opacity-0`}
+                      />
+                    ) : (
+                      <CircleDashed
+                        className={`size-5 shrink-0 text-zinc-400 opacity-100 transition-opacity ease-in group-hover:size-0 group-hover:opacity-0`}
+                      />
+                    )}
+                    <Trash2
+                      onClick={() => removeParticipant(id)}
+                      className={`size-0 shrink-0 cursor-pointer text-red-600 opacity-0 transition-opacity ease-in group-hover:size-5 group-hover:opacity-100`}
+                    />
+                  </div>
                 )}
               </div>
             );
@@ -105,7 +112,7 @@ export function ManageGuestsModal({
       <div className="h-px w-full bg-zinc-800" />
 
       <div
-        className={`flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-950 px-4 py-2.5 ${isEmailInputFocused && "border-lime-300"}`}
+        className={`flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-950 px-4 py-2.5 ${isEmailInputFocused && "border-lime-30"}`}
       >
         <Input
           Icon={AtSign}

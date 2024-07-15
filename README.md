@@ -41,4 +41,3 @@ npm run dev
 - [ ] Delete links
 - [ ] Error handling
 - [ ] Confirm participation
-- [ ] Improve form refresh page
