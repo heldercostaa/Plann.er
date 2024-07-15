@@ -99,6 +99,7 @@ export function UpdateTripModal({
             size="full"
             onClick={updateTrip}
             disabled={!dateRange || !(destination.length >= 4 || isLoading)}
+            tooltipMessage="Enter destination, start and end dates"
           >
             {!isLoading && "Update trip"}
           </Button>

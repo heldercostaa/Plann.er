@@ -80,6 +80,7 @@ export function CreateLinkModal({
             size="full"
             onClick={createLink}
             disabled={!isValidUrl(url) || !title || isLoading}
+            tooltipMessage="Enter link title and valid URL"
           >
             {!isLoading && "Create Link"}
           </Button>

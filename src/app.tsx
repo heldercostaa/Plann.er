@@ -1,10 +1,10 @@
 import { ConfigProvider, theme } from "antd";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 import { CreateTripPage } from "./pages/create-trip";
 import { ErrorPage } from "./pages/error";
 import { TripDetailsPage } from "./pages/trip-details/index";
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <CreateTripPage />,

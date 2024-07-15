@@ -1,4 +1,4 @@
-import { DatePicker } from "antd";
+import { DatePicker, Tooltip } from "antd";
 import { Dayjs } from "dayjs";
 import { ArrowRight, Calendar, MapPin, Settings2 } from "lucide-react";
 import { Button } from "../../../components/button";
@@ -51,20 +51,30 @@ export function DestinationAndDateStep({
         />
       </div>
 
-      {isGuestsInputOpen ? (
-        <Button onClick={closeGuestsInput} variant="secondary">
-          Change info
-          <Settings2 className="size-5" />
-        </Button>
-      ) : (
-        <Button
-          onClick={openGuestsInput}
-          disabled={!dateRange || !(destination?.length >= 4)}
-        >
-          Continue
-          <ArrowRight className="sice-5" />
-        </Button>
-      )}
+      <Tooltip
+        title={
+          !dateRange || !(destination?.length >= 4)
+            ? "Enter destination, start and end dates"
+            : ""
+        }
+        placement="bottom"
+        color="#ef4444"
+      >
+        {isGuestsInputOpen ? (
+          <Button onClick={closeGuestsInput} variant="secondary">
+            Change info
+            <Settings2 className="size-5" />
+          </Button>
+        ) : (
+          <Button
+            onClick={openGuestsInput}
+            disabled={!dateRange || !(destination?.length >= 4)}
+          >
+            Continue
+            <ArrowRight className="sice-5" />
+          </Button>
+        )}
+      </Tooltip>
     </div>
   );
 }

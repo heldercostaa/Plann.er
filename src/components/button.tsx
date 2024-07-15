@@ -1,5 +1,6 @@
 import { ComponentProps, ReactNode } from "react";
 import { tv, VariantProps } from "tailwind-variants";
+import { Tooltip as AntdTooltip } from "antd";
 
 const buttonVariants = tv({
   base: "flex items-center justify-center gap-2 rounded-lg px-5 py-2 font-medium transition-all duration-300 ease-in-out disabled:opacity-60",
@@ -26,12 +27,30 @@ const buttonVariants = tv({
 // prettier-ignore
 interface ButtonProps extends ComponentProps<"button">, VariantProps<typeof buttonVariants> {
   children: ReactNode;
+  tooltipMessage?: string;
 }
 
-export function Button({ children, variant, size, ...props }: ButtonProps) {
+export function Button({
+  children,
+  tooltipMessage,
+  variant,
+  size,
+  disabled,
+  ...props
+}: ButtonProps) {
   return (
-    <button {...props} className={buttonVariants({ variant, size })}>
-      {children}
-    </button>
+    <AntdTooltip
+      title={disabled ? tooltipMessage : ""}
+      placement="bottom"
+      color="#ef4444"
+    >
+      <button
+        {...props}
+        disabled={disabled}
+        className={buttonVariants({ variant, size })}
+      >
+        {children}
+      </button>
+    </AntdTooltip>
   );
 }

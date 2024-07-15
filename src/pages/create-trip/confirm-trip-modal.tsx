@@ -6,6 +6,7 @@ import { Input } from "../../components/input";
 import { Modal } from "../../components/modal";
 import { Spin } from "../../components/spin";
 import { isEmailValid } from "../../utils/validateEmail";
+import { Tooltip } from "../../components/tooltip";
 
 interface ConfirmTripModalProps {
   isOpen: boolean;
@@ -37,6 +38,8 @@ export function ConfirmTripModal({
     return true;
   }
 
+  const isConfirmTripDisabled = !canConfirmTrip() || isLoading;
+
   return (
     <Modal onClose={closeConfirmTripModal} isOpen={isOpen}>
       <div className="space-y-2">
@@ -56,7 +59,7 @@ export function ConfirmTripModal({
         <Input
           Icon={User}
           name="name"
-          placeholder="Your full name"
+          placeholder="Your name"
           onChange={(event) => setOwnerName(event.target.value)}
           variant="filled"
           inputRef={nameInputRef}
@@ -66,7 +69,7 @@ export function ConfirmTripModal({
           Icon={Mail}
           type="email"
           name="email"
-          placeholder="Your personal email"
+          placeholder="Your email"
           onChange={(event) => setOwnerEmail(event.target.value)}
           variant="filled"
           inputRef={emailInputRef}
@@ -74,9 +77,10 @@ export function ConfirmTripModal({
 
         <Spin isLoading={isLoading}>
           <Button
+            tooltipMessage="Enter name and valid email"
             type="submit"
             size="full"
-            disabled={!canConfirmTrip() || isLoading}
+            disabled={isConfirmTripDisabled}
           >
             {!isLoading && "Confirm trip creation"}
           </Button>

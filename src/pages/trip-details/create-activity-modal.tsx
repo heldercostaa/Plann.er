@@ -99,6 +99,7 @@ export function CreateActivityModal({
             size="full"
             onClick={createActivity}
             disabled={!occursAt || !title || isLoading}
+            tooltipMessage="Enter activity name, date and time"
           >
             {!isLoading && "Create activity"}
           </Button>

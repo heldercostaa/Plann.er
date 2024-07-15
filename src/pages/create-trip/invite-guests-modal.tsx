@@ -78,6 +78,7 @@ export function InviteGuestsModal({
         <Button
           onClick={addNewEmailToInvite}
           disabled={!isEmailValid(emailToInvite)}
+          tooltipMessage="Enter guest's email"
         >
           Invite
           <Plus className="size-5 min-h-5" />

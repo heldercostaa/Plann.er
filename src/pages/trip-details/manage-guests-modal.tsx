@@ -144,6 +144,7 @@ export function ManageGuestsModal({
           <Button
             size="small"
             onClick={inviteParticipant}
+            tooltipMessage="Enter valid guest's email"
             disabled={
               !isEmailValid(emailToInvite) ||
               !!participants.find(({ email }) => email === emailToInvite) ||
