@@ -130,7 +130,7 @@ export function ManageGuestsModal({
       <div className="h-px w-full bg-zinc-800" />
 
       <div
-        className={`flex items-center gap-2 rounded-lg border bg-zinc-950 px-4 py-2.5 ${isEmailInputFocused ? "border-lime-300" : "border-zinc-800"}`}
+        className={`flex items-center gap-2 rounded-lg border bg-zinc-950 px-4 py-2.5 duration-300 ease-in-out ${isEmailInputFocused ? "border-lime-300" : "border-zinc-800"}`}
       >
         <Input
           Icon={AtSign}
