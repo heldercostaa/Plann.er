@@ -3,12 +3,12 @@ import { ComponentProps, FocusEventHandler, RefObject, useState } from "react";
 import { tv, VariantProps } from "tailwind-variants";
 
 const inputVariants = tv({
-  base: "flex items-center gap-2",
+  base: "transition-color flex items-center gap-2 duration-300 ease-in-out",
 
   variants: {
     variant: {
       borderless: "",
-      filled: "h-14 rounded-lg border border-zinc-800 bg-zinc-950 px-4",
+      filled: "h-14 rounded-lg border bg-zinc-950 px-4",
     },
 
     stretch: {
@@ -43,16 +43,18 @@ export function Input({
   const [isFocused, setIsFocused] = useState(false);
 
   function _onFocus() {
+    console.log("isFocused", isFocused);
     return setIsFocused(true);
   }
 
   function _onBlur() {
+    console.log("isFocused", isFocused);
     setIsFocused(false);
   }
 
   return (
     <div
-      className={`${inputVariants({ variant, stretch })} ${isFocused && "border-lime-300"}`}
+      className={`${inputVariants({ variant, stretch })} ${isFocused ? "border-lime-300" : "border-zinc-800"}`}
     >
       {Icon && <Icon className="size-5 text-zinc-400" />}
       <input

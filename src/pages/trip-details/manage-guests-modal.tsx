@@ -106,16 +106,16 @@ export function ManageGuestsModal({
                   <div>
                     {isConfirmed ? (
                       <CheckCircle2
-                        className={`size-5 shrink-0 text-green-400 opacity-100 transition-opacity ease-in group-hover:size-0 group-hover:opacity-0`}
+                        className={`size-5 shrink-0 text-green-400 opacity-100 transition-opacity duration-500 ease-in group-hover:size-0 group-hover:opacity-0`}
                       />
                     ) : (
                       <CircleDashed
-                        className={`size-5 shrink-0 text-zinc-400 opacity-100 transition-opacity ease-in group-hover:size-0 group-hover:opacity-0`}
+                        className={`size-5 shrink-0 text-zinc-400 opacity-100 transition-opacity duration-500 ease-in group-hover:size-0 group-hover:opacity-0`}
                       />
                     )}
                     <Trash2
                       onClick={() => removeParticipant(id)}
-                      className={`size-0 shrink-0 text-red-600 opacity-0 transition-opacity ease-in group-hover:size-5 ${isLoading ? "cursor-wait group-hover:opacity-30" : "cursor-pointer group-hover:opacity-100"}`}
+                      className={`size-0 shrink-0 text-red-600 opacity-0 transition-opacity duration-500 ease-in group-hover:size-5 ${isLoading ? "cursor-wait group-hover:opacity-30" : "cursor-pointer group-hover:opacity-100"}`}
                     />
                   </div>
                 )}
@@ -128,7 +128,7 @@ export function ManageGuestsModal({
       <div className="h-px w-full bg-zinc-800" />
 
       <div
-        className={`flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-950 px-4 py-2.5 ${isEmailInputFocused && "border-lime-30"}`}
+        className={`flex items-center gap-2 rounded-lg border bg-zinc-950 px-4 py-2.5 ${isEmailInputFocused ? "border-lime-300" : "border-zinc-800"}`}
       >
         <Input
           Icon={AtSign}

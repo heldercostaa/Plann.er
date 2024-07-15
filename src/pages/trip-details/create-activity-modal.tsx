@@ -62,7 +62,7 @@ export function CreateActivityModal({
         />
 
         <div
-          className={`flex h-14 items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-950 px-5 ${isCalendarInputFocused && "border-lime-300"}`}
+          className={`flex h-14 items-center gap-2 rounded-lg border bg-zinc-950 px-5 ${isCalendarInputFocused ? "border-lime-300" : "border-zinc-800"}`}
         >
           <Calendar className="size-5 text-zinc-400" />
           <DatePicker
