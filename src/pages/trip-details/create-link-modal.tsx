@@ -11,13 +11,13 @@ import { Spin } from "../../components/spin";
 interface CreateLinkModalProps {
   closeCreateLinkModal: () => void;
   isOpen: boolean;
-  getLinks: () => void;
+  fetchLinks: () => void;
 }
 
 export function CreateLinkModal({
   closeCreateLinkModal,
   isOpen,
-  getLinks,
+  fetchLinks,
 }: CreateLinkModalProps) {
   const { tripId } = useParams();
 
@@ -36,7 +36,7 @@ export function CreateLinkModal({
         url,
       });
 
-      getLinks();
+      fetchLinks();
       closeCreateLinkModal();
     } catch (error) {
       console.error(error);

@@ -8,10 +8,12 @@ import { UpdateTripModal } from "./update-trip-modal";
 
 interface DestinationAndDateHeaderProps {
   trip: Trip;
+  fetchTrip: () => void;
 }
 
 export function DestinationAndDateHeader({
   trip,
+  fetchTrip,
 }: DestinationAndDateHeaderProps) {
   const [isUpdateTripModalOpen, setIsUpdateTripModalOpen] = useState(false);
 
@@ -50,7 +52,8 @@ export function DestinationAndDateHeader({
 
         {isUpdateTripModalOpen && (
           <UpdateTripModal
-            updateTripModal={closeUpdateTripModal}
+            fetchTrip={fetchTrip}
+            closeUpdateTripModal={closeUpdateTripModal}
             trip={trip}
             isOpen={isUpdateTripModalOpen}
           />

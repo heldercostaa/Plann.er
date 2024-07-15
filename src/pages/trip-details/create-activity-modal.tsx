@@ -14,14 +14,14 @@ interface CreateActivityModalProps {
   closeCreateActivityModal: () => void;
   trip: Trip;
   isOpen: boolean;
-  getActivities: () => void;
+  fetchActivities: () => void;
 }
 
 export function CreateActivityModal({
   closeCreateActivityModal,
   trip,
   isOpen,
-  getActivities,
+  fetchActivities,
 }: CreateActivityModalProps) {
   const { tripId } = useParams();
 
@@ -41,7 +41,7 @@ export function CreateActivityModal({
         occursAt: occursAt.toISOString(),
       });
 
-      getActivities();
+      fetchActivities();
       closeCreateActivityModal();
     } catch (error) {
       console.error(error);

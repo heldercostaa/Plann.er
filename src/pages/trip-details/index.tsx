@@ -29,29 +29,33 @@ export function TripDetailsPage() {
     setIsCreateActivityModalOpen(false);
   }
 
-  async function getActivities() {
+  async function fetchTrip() {
+    api.get(`/trips/${tripId}`).then((response) => setTrip(response.data.trip));
+  }
+
+  async function fetchActivities() {
     api
       .get(`/trips/${tripId}/activities`)
       .then((response) => setActivities(response.data.activities));
   }
 
-  async function getLinks() {
+  async function fetchLinks() {
     api
       .get(`/trips/${tripId}/links`)
       .then((response) => setLinks(response.data.links));
   }
 
   useEffect(() => {
-    api.get(`/trips/${tripId}`).then((response) => setTrip(response.data.trip));
-    getActivities();
-    getLinks();
+    fetchTrip();
+    fetchActivities();
+    fetchLinks();
   }, [tripId]);
 
   if (!trip) return;
 
   return (
     <div className="mx-auto max-w-6xl space-y-8 px-6 py-10">
-      <DestinationAndDateHeader trip={trip} />
+      <DestinationAndDateHeader trip={trip} fetchTrip={fetchTrip} />
 
       <main className="flex gap-16 px-4">
         <div className="flex-1 space-y-6">
@@ -68,7 +72,7 @@ export function TripDetailsPage() {
         </div>
 
         <div className="w-80 space-y-6">
-          <RelevantLinks links={links} getLinks={getLinks} />
+          <RelevantLinks links={links} fetchLinks={fetchLinks} />
 
           <div className="h-px w-full bg-zinc-800" />
 
@@ -81,7 +85,7 @@ export function TripDetailsPage() {
           isOpen={isCreateActivityModalOpen}
           closeCreateActivityModal={closeCreateActivityModal}
           trip={trip}
-          getActivities={getActivities}
+          fetchActivities={fetchActivities}
         />
       )}
     </div>

@@ -7,10 +7,10 @@ import { CreateLinkModal } from "./create-link-modal";
 
 interface RelevantLinksProps {
   links: Link[];
-  getLinks: () => void;
+  fetchLinks: () => void;
 }
 
-export function RelevantLinks({ links, getLinks }: RelevantLinksProps) {
+export function RelevantLinks({ links, fetchLinks }: RelevantLinksProps) {
   const { tripId } = useParams();
   const [isCreateLinkModalOpen, setIsCreateLinkModalOpen] = useState(false);
 
@@ -56,7 +56,7 @@ export function RelevantLinks({ links, getLinks }: RelevantLinksProps) {
         <CreateLinkModal
           closeCreateLinkModal={closeCreateLinkModal}
           isOpen={isCreateLinkModalOpen}
-          getLinks={getLinks}
+          fetchLinks={fetchLinks}
         />
       )}
     </div>

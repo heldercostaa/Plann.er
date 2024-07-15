@@ -12,15 +12,17 @@ import { Trip } from "../../types/trip";
 import { Spin } from "../../components/spin";
 
 interface UpdateTripModalProps {
-  updateTripModal: () => void;
+  closeUpdateTripModal: () => void;
   trip: Trip;
   isOpen: boolean;
+  fetchTrip: () => void;
 }
 
 export function UpdateTripModal({
-  updateTripModal,
+  closeUpdateTripModal,
   trip,
   isOpen,
+  fetchTrip,
 }: UpdateTripModalProps) {
   const { tripId } = useParams();
 
@@ -44,7 +46,8 @@ export function UpdateTripModal({
         endsAt,
       });
 
-      window.document.location.reload();
+      fetchTrip();
+      closeUpdateTripModal();
     } catch (error) {
       console.error(error);
     } finally {
@@ -53,11 +56,11 @@ export function UpdateTripModal({
   }
 
   return (
-    <Modal onClose={updateTripModal} isOpen={isOpen}>
+    <Modal onClose={closeUpdateTripModal} isOpen={isOpen}>
       <div className="space-y-2">
         <div className="flex items-center justify-between">
           <h2 className="text-lg font-semibold">Change trip information</h2>
-          <button type="button" onClick={updateTripModal}>
+          <button type="button" onClick={closeUpdateTripModal}>
             <X className="size-5 text-zinc-400" />
           </button>
         </div>
