@@ -20,12 +20,14 @@ interface ManageGuestsModalProps {
   closeManageGuestsModal: () => void;
   participants: Participant[];
   isOpen: boolean;
+  getParticipants: () => void;
 }
 
 export function ManageGuestsModal({
   closeManageGuestsModal,
   participants,
   isOpen,
+  getParticipants,
 }: ManageGuestsModalProps) {
   const { tripId } = useParams();
 
@@ -40,7 +42,7 @@ export function ManageGuestsModal({
     try {
       await api.delete(`/participants/${participantId}`);
 
-      window.document.location.reload();
+      getParticipants();
     } catch (error) {
       console.error(error);
     } finally {
@@ -57,7 +59,7 @@ export function ManageGuestsModal({
         email: emailToInvite,
       });
 
-      window.document.location.reload();
+      getParticipants();
     } catch (error) {
       console.error(error);
     } finally {
