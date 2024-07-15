@@ -102,7 +102,7 @@ export function CreateTripPage() {
       <div className="w-full max-w-3xl space-y-10 px-6 text-center">
         <div className="flex flex-col items-center gap-3">
           <img
-            src={`${import.meta.env.DEV ? "/Plann.er/" : "/"}logo.svg`}
+            src={`${import.meta.env.DEV ? "/" : "/Plann.er/"}logo.svg`}
             alt="Plann.er"
           />
           <p className="text-lg text-zinc-300">
