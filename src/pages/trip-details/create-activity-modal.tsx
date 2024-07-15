@@ -8,6 +8,7 @@ import { Input } from "../../components/input";
 import { Modal } from "../../components/modal";
 import { api } from "../../lib/axios";
 import { Trip } from "../../types/trip";
+import { Spin } from "../../components/spin";
 
 interface CreateActivityModalProps {
   closeCreateActivityModal: () => void;
@@ -25,17 +26,25 @@ export function CreateActivityModal({
   const [title, setTitle] = useState("");
   const [occursAt, setOccursAt] = useState<Dayjs | undefined>(undefined);
   const [isCalendarInputFocused, setIsCalendarInputFocused] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   async function createActivity() {
     if (!title) return;
     if (!occursAt) return;
 
-    await api.post(`/trips/${tripId}/activities`, {
-      title,
-      occursAt: occursAt.toISOString(),
-    });
+    setIsLoading(true);
+    try {
+      await api.post(`/trips/${tripId}/activities`, {
+        title,
+        occursAt: occursAt.toISOString(),
+      });
 
-    window.document.location.reload();
+      window.document.location.reload();
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (
@@ -85,13 +94,15 @@ export function CreateActivityModal({
           />
         </div>
 
-        <Button
-          size="full"
-          onClick={createActivity}
-          disabled={!occursAt || !title}
-        >
-          Create activity
-        </Button>
+        <Spin isLoading={isLoading}>
+          <Button
+            size="full"
+            onClick={createActivity}
+            disabled={!occursAt || !title}
+          >
+            {!isLoading && "Create activity"}
+          </Button>
+        </Spin>
       </div>
     </Modal>
   );
