@@ -3,7 +3,7 @@ import react from "@vitejs/plugin-react";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "/[REPO_NAME]/",
+  base: "/[Plann.er]/",
   plugins: [react()],
   server: {
     port: 3000,
