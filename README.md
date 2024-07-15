@@ -28,13 +28,11 @@ npm run dev
 
 ## Roadmap
 
-- [ ] Improve readme with pictures
-- [ ] Improve .env validation
-
-- [ ] Delete activities
 - [ ] Delete links
+
 - [ ] Error handling
 - [ ] Confirm participation
-- [ ] Loading screen placeholders
 
+- [ ] Improve .env validation
+- [ ] Improve readme with pictures
 - [ ] Implement mobile version

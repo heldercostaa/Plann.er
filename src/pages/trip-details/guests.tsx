@@ -19,14 +19,14 @@ export function Guests() {
     setIsManageGuestsModalOpen(false);
   }
 
-  async function getParticipants() {
+  async function fetchParticipants() {
     await api.get(`/trips/${tripId}/participants`).then((response) => {
       setParticipants(response.data.participants);
     });
   }
 
   useEffect(() => {
-    getParticipants();
+    fetchParticipants();
   }, [tripId]);
 
   return (
@@ -63,7 +63,7 @@ export function Guests() {
           closeManageGuestsModal={closeManageGuestsModal}
           participants={participants}
           isOpen={isManageGuestsModalOpen}
-          getParticipants={getParticipants}
+          fetchParticipants={fetchParticipants}
         />
       )}
     </div>

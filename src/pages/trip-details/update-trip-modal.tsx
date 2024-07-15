@@ -1,16 +1,15 @@
 import { DatePicker } from "antd";
 import { Dayjs } from "dayjs";
-import { Calendar, MapPin, X } from "lucide-react";
+import { Calendar, X } from "lucide-react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Button } from "../../components/button";
-import { Input } from "../../components/input";
+import { LocationDropdown } from "../../components/location-dropdown";
 import { Modal } from "../../components/modal";
+import { Spin } from "../../components/spin";
 import { api } from "../../lib/axios";
 import { dayjs } from "../../lib/dayjs";
 import { Trip } from "../../types/trip";
-import { Spin } from "../../components/spin";
-import { LocationDropdown } from "../../components/location-dropdown";
 
 interface UpdateTripModalProps {
   closeUpdateTripModal: () => void;

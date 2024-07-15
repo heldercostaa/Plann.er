@@ -32,6 +32,8 @@ export function LocationDropdown({
   const [locationsMenuItems, setLocationsMenuItems] = useState<ItemType[]>([]);
 
   useEffect(() => {
+    if (!destination) return;
+
     const delay = 1000;
     const timerId = setTimeout(() => {
       locationiqApi
