@@ -28,7 +28,7 @@ npm run dev
 
 ## Roadmap
 
-- [ ] Add loading states
+- [ ] Add loading states for requests
 - [ ] Input validations
 - [ ] Improve refresh when adding new elements to array
 - [ ] Smooth the navigation (button hover, maybe some small animations)
@@ -41,3 +41,4 @@ npm run dev
 - [ ] Delete links
 - [ ] Error handling
 - [ ] Confirm participation
+- [ ] Loading screen placeholders

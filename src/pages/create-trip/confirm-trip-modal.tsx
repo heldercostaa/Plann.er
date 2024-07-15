@@ -1,5 +1,6 @@
 // prettier-ignore
-import { Mail, User, X } from "lucide-react";
+import { Spin } from "antd";
+import { LoaderCircle, Mail, User, X } from "lucide-react";
 import { FormEvent, useRef } from "react";
 import { Button } from "../../components/button";
 import { Input } from "../../components/input";
@@ -12,6 +13,7 @@ interface ConfirmTripModalProps {
   createTrip: (event: FormEvent<HTMLFormElement>) => void;
   setOwnerName: (name: string) => void;
   setOwnerEmail: (email: string) => void;
+  isLoading: boolean;
 }
 
 export function ConfirmTripModal({
@@ -20,6 +22,7 @@ export function ConfirmTripModal({
   setOwnerName,
   setOwnerEmail,
   isOpen,
+  isLoading,
 }: ConfirmTripModalProps) {
   const nameInputRef = useRef<HTMLInputElement>(null);
   const emailInputRef = useRef<HTMLInputElement>(null);
@@ -69,9 +72,18 @@ export function ConfirmTripModal({
           inputRef={emailInputRef}
         />
 
-        <Button type="submit" size="full" disabled={!canConfirmTrip()}>
-          Confirm trip creation
-        </Button>
+        <Spin
+          spinning={isLoading}
+          indicator={<LoaderCircle className="animate-spin" />}
+        >
+          <Button
+            type="submit"
+            size="full"
+            disabled={!canConfirmTrip() || isLoading}
+          >
+            {!isLoading && "Confirm trip creation"}
+          </Button>
+        </Spin>
       </form>
     </Modal>
   );

@@ -14,6 +14,7 @@ export function CreateTripPage() {
   const [isGuestsInputOpen, setIsGuestsInputOpen] = useState(false);
   const [isGuestsModalOpen, setIsGuestsModalOpen] = useState(false);
   const [isConfirmTripModalOpen, setIsConfirmTripModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [destination, setDestination] = useState("");
   const [ownerName, setOwnerName] = useState("");
@@ -23,10 +24,7 @@ export function CreateTripPage() {
   >(null);
 
   const [emailToInvite, setEmailToInvite] = useState("");
-  const [emailsToInvite, setEmailsToInvite] = useState([
-    "helder@gmail.com",
-    "giovanna@gmail.com",
-  ]);
+  const [emailsToInvite, setEmailsToInvite] = useState<string[]>([]);
 
   function openGuestsInput() {
     setIsGuestsInputOpen(true);
@@ -79,18 +77,24 @@ export function CreateTripPage() {
     if (!ownerName || !ownerEmail) return;
     if (emailsToInvite.length === 0) return;
 
-    const response = await api.post("/trips", {
-      destination,
-      startsAt,
-      endsAt,
-      emailsToInvite,
-      ownerName,
-      ownerEmail,
-    });
+    setIsLoading(true);
+    try {
+      const response = await api.post("/trips", {
+        destination,
+        startsAt,
+        endsAt,
+        emailsToInvite,
+        ownerName,
+        ownerEmail,
+      });
 
-    const { tripId } = response.data;
-
-    navigate(`/trips/${tripId}`);
+      const { tripId } = response.data;
+      navigate(`/trips/${tripId}`);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (
@@ -149,6 +153,7 @@ export function CreateTripPage() {
           createTrip={createTrip}
           setOwnerName={setOwnerName}
           setOwnerEmail={setOwnerEmail}
+          isLoading={isLoading}
         />
       )}
     </div>
