@@ -1,22 +1,12 @@
 import { CircleCheck, CircleDashed } from "lucide-react";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { api } from "../../lib/axios";
 import { dayjs } from "../../lib/dayjs";
+import { Activity } from "../../types/activity";
 
-interface Activity {
-  date: string;
-  activities: {
-    id: string;
-    title: string;
-    occursAt: string;
-  }[];
+interface ActivitiesProps {
+  activities: Activity[];
 }
 
-export function Activities() {
-  const { tripId } = useParams();
-  const [activities, setActivities] = useState<Activity[]>([]);
-
+export function Activities({ activities }: ActivitiesProps) {
   function isPast(date: string) {
     return dayjs().isAfter(date) && !dayjs(date).isToday();
   }
@@ -28,12 +18,6 @@ export function Activities() {
   function isFuture(date: string) {
     return dayjs().isBefore(date);
   }
-
-  useEffect(() => {
-    api
-      .get(`/trips/${tripId}/activities`)
-      .then((response) => setActivities(response.data.activities));
-  }, [tripId]);
 
   return (
     <div className="space-y-8">

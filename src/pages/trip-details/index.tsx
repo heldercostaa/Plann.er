@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Button } from "../../components/button";
 import { api } from "../../lib/axios";
+import { Activity } from "../../types/activity";
 import { Trip } from "../../types/trip";
 import { Activities } from "./activities";
 import { CreateActivityModal } from "./create-activity-modal";
@@ -13,6 +14,7 @@ import { RelevantLinks } from "./relevant-links";
 export function TripDetailsPage() {
   const { tripId } = useParams();
   const [trip, setTrip] = useState<Trip | undefined>(undefined);
+  const [activities, setActivities] = useState<Activity[]>([]);
 
   const [isCreateActivityModalOpen, setIsCreateActivityModalOpen] =
     useState(false);
@@ -25,8 +27,15 @@ export function TripDetailsPage() {
     setIsCreateActivityModalOpen(false);
   }
 
+  async function getActivities() {
+    api
+      .get(`/trips/${tripId}/activities`)
+      .then((response) => setActivities(response.data.activities));
+  }
+
   useEffect(() => {
     api.get(`/trips/${tripId}`).then((response) => setTrip(response.data.trip));
+    getActivities();
   }, [tripId]);
 
   if (!trip) return;
@@ -46,7 +55,7 @@ export function TripDetailsPage() {
             </Button>
           </div>
 
-          <Activities />
+          <Activities activities={activities} />
         </div>
 
         <div className="w-80 space-y-6">
@@ -63,6 +72,7 @@ export function TripDetailsPage() {
           isOpen={isCreateActivityModalOpen}
           closeCreateActivityModal={closeCreateActivityModal}
           trip={trip}
+          getActivities={getActivities}
         />
       )}
     </div>

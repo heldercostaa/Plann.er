@@ -28,7 +28,6 @@ npm run dev
 
 ## Roadmap
 
-- [ ] Input validations
 - [ ] Improve refresh when adding new elements to array
 - [ ] Smooth the navigation (button hover, maybe some small animations)
 - [ ] Implement mobile version
