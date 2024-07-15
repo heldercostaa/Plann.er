@@ -28,8 +28,6 @@ npm run dev
 
 ## Roadmap
 
-- [ ] Delete links
-
 - [ ] Error handling
 - [ ] Confirm participation
 

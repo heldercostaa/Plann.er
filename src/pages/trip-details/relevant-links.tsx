@@ -1,7 +1,7 @@
-import { Link2, Plus } from "lucide-react";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link2, Plus, Trash2 } from "lucide-react";
+import { useState } from "react";
 import { Button } from "../../components/button";
+import { api } from "../../lib/axios";
 import { Link } from "../../types/links";
 import { CreateLinkModal } from "./create-link-modal";
 
@@ -11,8 +11,8 @@ interface RelevantLinksProps {
 }
 
 export function RelevantLinks({ links, fetchLinks }: RelevantLinksProps) {
-  const { tripId } = useParams();
   const [isCreateLinkModalOpen, setIsCreateLinkModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   function openCreateLinkModal() {
     setIsCreateLinkModalOpen(true);
@@ -22,14 +22,27 @@ export function RelevantLinks({ links, fetchLinks }: RelevantLinksProps) {
     setIsCreateLinkModalOpen(false);
   }
 
-  useEffect(() => {}, [tripId]);
+  async function removeLink(LinkId: string) {
+    if (!LinkId) return;
+
+    setIsLoading(true);
+    try {
+      await api.delete(`/links/${LinkId}`);
+
+      fetchLinks();
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
+  }
 
   return (
     <div className="space-y-5">
       <h2 className="text-2xl font-semibold">Relevant Links</h2>
       {links.map(({ id, title, url }) => {
         return (
-          <div key={id} className="space-y-5">
+          <div key={id} className="group space-y-5">
             <div className="flex items-center justify-between gap-4">
               <div className="space-y-1.5">
                 <span className="block font-medium text-zinc-100">{title}</span>
@@ -41,7 +54,13 @@ export function RelevantLinks({ links, fetchLinks }: RelevantLinksProps) {
                   {url}
                 </a>
               </div>
-              <Link2 className="size-5 shrink-0 text-zinc-400" />
+              <div>
+                <Link2 className="size-5 shrink-0 text-zinc-400 opacity-100 transition-opacity duration-500 ease-in group-hover:size-0 group-hover:opacity-0" />
+                <Trash2
+                  onClick={() => removeLink(id)}
+                  className={`size-0 shrink-0 text-red-600 opacity-0 transition-opacity duration-500 ease-in group-hover:size-5 ${isLoading ? "cursor-wait group-hover:opacity-30" : "cursor-pointer group-hover:opacity-100"}`}
+                />
+              </div>
             </div>
           </div>
         );
