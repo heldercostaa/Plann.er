@@ -1,7 +1,8 @@
-# Plann.er
+![Plann.er](./public/logo.svg)
 
 [![Maintainer](https://img.shields.io/badge/maintainer-%40heldercostaa-blue?logo=superuser&logoColor=white)](https://github.com/heldercostaa)
 ![Language](https://img.shields.io/badge/language-typescript-yellow?logo=ts-node&logoColor=white)
+[![Vercel Deploy](https://deploy-badge.vercel.app/vercel/planner-heldercosta)](https://plann-9zyysc409-heldercosta.vercel.app/)
 [![GitHub Workflow Status (main branch)](https://img.shields.io/github/actions/workflow/status/heldercostaa/Plann.er/main.yml?branch=main&logo=dependabot&logoColor=white)](https://github.com/heldercostaa/Plann.er)
 [![Last commit](https://img.shields.io/github/last-commit/heldercostaa/Plann.er.svg?logo=github&logoColor=white)](https://github.com/heldercostaa/Plann.er/commits/main)
 
