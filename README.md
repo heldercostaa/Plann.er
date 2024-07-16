@@ -28,7 +28,6 @@ npm run dev
 
 ## Roadmap
 
-- [ ] Error handling
 - [ ] Confirm participation
 
 - [ ] Improve .env validation

@@ -1,3 +1,5 @@
+import { message } from "antd";
+import { isAxiosError } from "axios";
 import { CheckCircle2, CircleDashed, UserCog } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -10,6 +12,7 @@ export function Guests() {
   const { tripId } = useParams();
   const [participants, setParticipants] = useState<Participant[]>([]);
   const [isManageGuestsModalOpen, setIsManageGuestsModalOpen] = useState(false);
+  const [messageApi, contextHolder] = message.useMessage();
 
   function openManageGuestsModal() {
     setIsManageGuestsModalOpen(true);
@@ -20,9 +23,22 @@ export function Guests() {
   }
 
   async function fetchParticipants() {
-    await api.get(`/trips/${tripId}/participants`).then((response) => {
-      setParticipants(response.data.participants);
-    });
+    await api
+      .get(`/trips/${tripId}/participants`)
+      .then((response) => {
+        setParticipants(response.data.participants);
+      })
+      .catch((error: any) => {
+        if (isAxiosError(error) && error.response) {
+          const errorMessage = error.response.data.message;
+          messageApi.open({
+            type: "error",
+            content: `Error while fetching participants${errorMessage && ": " + errorMessage}`,
+          });
+        } else {
+          console.error(error);
+        }
+      });
   }
 
   useEffect(() => {
@@ -30,42 +46,45 @@ export function Guests() {
   }, [tripId]);
 
   return (
-    <div className="space-y-5">
-      <h2 className="text-2xl font-semibold">Guests</h2>
+    <>
+      {contextHolder}
       <div className="space-y-5">
-        {participants?.map(({ id, email, name, isConfirmed }, index) => {
-          return (
-            <div key={id} className="flex items-center justify-between gap-4">
-              <div className="space-y-1.5">
-                <span className="block font-medium text-zinc-100">
-                  {name ?? `Guest ${index}`}
-                </span>
-                <span className="block truncate text-sm text-zinc-400">
-                  {email}
-                </span>
+        <h2 className="text-2xl font-semibold">Guests</h2>
+        <div className="space-y-5">
+          {participants?.map(({ id, email, name, isConfirmed }, index) => {
+            return (
+              <div key={id} className="flex items-center justify-between gap-4">
+                <div className="space-y-1.5">
+                  <span className="block font-medium text-zinc-100">
+                    {name ?? `Guest ${index}`}
+                  </span>
+                  <span className="block truncate text-sm text-zinc-400">
+                    {email}
+                  </span>
+                </div>
+                {isConfirmed ? (
+                  <CheckCircle2 className="size-5 shrink-0 text-green-400" />
+                ) : (
+                  <CircleDashed className="size-5 shrink-0 text-zinc-400" />
+                )}
               </div>
-              {isConfirmed ? (
-                <CheckCircle2 className="size-5 shrink-0 text-green-400" />
-              ) : (
-                <CircleDashed className="size-5 shrink-0 text-zinc-400" />
-              )}
-            </div>
-          );
-        })}
-      </div>
-      <Button variant="secondary" size="full" onClick={openManageGuestsModal}>
-        <UserCog className="size-5" />
-        Manage guests
-      </Button>
+            );
+          })}
+        </div>
+        <Button variant="secondary" size="full" onClick={openManageGuestsModal}>
+          <UserCog className="size-5" />
+          Manage guests
+        </Button>
 
-      {isManageGuestsModalOpen && (
-        <ManageGuestsModal
-          closeManageGuestsModal={closeManageGuestsModal}
-          participants={participants}
-          isOpen={isManageGuestsModalOpen}
-          fetchParticipants={fetchParticipants}
-        />
-      )}
-    </div>
+        {isManageGuestsModalOpen && (
+          <ManageGuestsModal
+            closeManageGuestsModal={closeManageGuestsModal}
+            participants={participants}
+            isOpen={isManageGuestsModalOpen}
+            fetchParticipants={fetchParticipants}
+          />
+        )}
+      </div>
+    </>
   );
 }

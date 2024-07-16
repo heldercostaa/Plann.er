@@ -6,7 +6,6 @@ import { Input } from "../../components/input";
 import { Modal } from "../../components/modal";
 import { Spin } from "../../components/spin";
 import { isEmailValid } from "../../utils/validateEmail";
-import { Tooltip } from "../../components/tooltip";
 
 interface ConfirmTripModalProps {
   isOpen: boolean;
