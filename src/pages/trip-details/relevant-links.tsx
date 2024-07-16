@@ -1,9 +1,10 @@
-import { Link2, Plus, Trash2 } from "lucide-react";
+import { CircleAlert, Link2, Plus, Trash2 } from "lucide-react";
 import { useState } from "react";
 import { Button } from "../../components/button";
 import { api } from "../../lib/axios";
 import { Link } from "../../types/links";
 import { CreateLinkModal } from "./create-link-modal";
+import { Popconfirm } from "antd";
 
 interface RelevantLinksProps {
   links: Link[];
@@ -56,10 +57,18 @@ export function RelevantLinks({ links, fetchLinks }: RelevantLinksProps) {
               </div>
               <div>
                 <Link2 className="size-5 shrink-0 text-zinc-400 opacity-100 transition-opacity duration-500 ease-in group-hover:size-0 group-hover:opacity-0" />
-                <Trash2
-                  onClick={() => removeLink(id)}
-                  className={`size-0 shrink-0 text-red-600 opacity-0 transition-opacity duration-500 ease-in group-hover:size-5 ${isLoading ? "cursor-wait group-hover:opacity-30" : "cursor-pointer group-hover:opacity-100"}`}
-                />
+                <Popconfirm
+                  title="Remove link"
+                  description="Are you sure to remove this link?"
+                  okText="Yes"
+                  cancelText="No"
+                  icon={<CircleAlert className="mr-2 size-6 text-red-600" />}
+                  onConfirm={() => removeLink(id)}
+                >
+                  <Trash2
+                    className={`size-0 shrink-0 text-red-600 opacity-0 transition-opacity duration-500 ease-in group-hover:size-5 ${isLoading ? "cursor-wait group-hover:opacity-30" : "cursor-pointer group-hover:opacity-100"}`}
+                  />
+                </Popconfirm>
               </div>
             </div>
           </div>

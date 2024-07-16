@@ -1,8 +1,9 @@
-import { CircleCheck, CircleDashed, Trash2 } from "lucide-react";
+import { CircleAlert, CircleCheck, CircleDashed, Trash2 } from "lucide-react";
 import { useState } from "react";
 import { api } from "../../lib/axios";
 import { dayjs } from "../../lib/dayjs";
 import { Activity } from "../../types/activity";
+import { Popconfirm } from "antd";
 
 interface ActivitiesProps {
   activities: Activity[];
@@ -76,10 +77,20 @@ export function Activities({ activities, fetchActivities }: ActivitiesProps) {
                         {dayjs(occursAt).format("H:mm")}h
                       </span>
 
-                      <Trash2
-                        onClick={() => removeActivity(id)}
-                        className={`size-0 shrink-0 text-red-600 opacity-0 transition-opacity duration-500 ease-in group-hover:size-5 ${isLoading ? "cursor-wait group-hover:opacity-30" : "cursor-pointer group-hover:opacity-100"}`}
-                      />
+                      <Popconfirm
+                        title="Remove activity"
+                        description="Are you sure to remove this activity?"
+                        okText="Yes"
+                        cancelText="No"
+                        icon={
+                          <CircleAlert className="mr-2 size-6 text-red-600" />
+                        }
+                        onConfirm={() => removeActivity(id)}
+                      >
+                        <Trash2
+                          className={`size-0 shrink-0 text-red-600 opacity-0 transition-opacity duration-500 ease-in group-hover:size-5 ${isLoading ? "cursor-wait group-hover:opacity-30" : "cursor-pointer group-hover:opacity-100"}`}
+                        />
+                      </Popconfirm>
                     </div>
                   );
                 })}
