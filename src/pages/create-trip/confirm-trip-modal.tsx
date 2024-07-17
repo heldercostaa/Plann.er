@@ -1,10 +1,12 @@
 // prettier-ignore
+import { Dayjs } from "dayjs";
 import { Mail, User, X } from "lucide-react";
 import { FormEvent, useRef } from "react";
 import { Button } from "../../components/button";
 import { Input } from "../../components/input";
 import { Modal } from "../../components/modal";
 import { Spin } from "../../components/spin";
+import { formatDates } from "../../utils/formatDate";
 import { isEmailValid } from "../../utils/validateEmail";
 
 interface ConfirmTripModalProps {
@@ -14,6 +16,8 @@ interface ConfirmTripModalProps {
   setOwnerName: (name: string) => void;
   setOwnerEmail: (email: string) => void;
   isLoading: boolean;
+  destination: string;
+  dateRange: [Dayjs | null, Dayjs | null] | null;
 }
 
 export function ConfirmTripModal({
@@ -23,9 +27,15 @@ export function ConfirmTripModal({
   setOwnerEmail,
   isOpen,
   isLoading,
+  destination,
+  dateRange,
 }: ConfirmTripModalProps) {
   const nameInputRef = useRef<HTMLInputElement>(null);
   const emailInputRef = useRef<HTMLInputElement>(null);
+
+  const [startsAt, endsAt] = dateRange
+    ? [dateRange[0] || undefined, dateRange[1] || undefined]
+    : [undefined, undefined];
 
   function canConfirmTrip() {
     const name = nameInputRef.current?.value;
@@ -50,7 +60,7 @@ export function ConfirmTripModal({
         </div>
         {/* prettier-ignore */}
         <p className="text-sm text-zinc-400">
-            To complete the trip creation to <span className="font-semibold text-zinc-100">Fortaleza, Brasil</span> between <span className="font-semibold text-zinc-100">16 and 27 of August 2024</span>, fill your data below:
+            To complete the trip creation to <span className="font-semibold text-zinc-100">{destination}</span> from <span className="font-semibold text-zinc-100">{formatDates({ startsAt, endsAt })}</span>, fill your data below:
           </p>
       </div>
 

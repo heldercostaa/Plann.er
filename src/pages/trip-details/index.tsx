@@ -2,7 +2,7 @@ import { message } from "antd";
 import { isAxiosError } from "axios";
 import { Plus } from "lucide-react";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "../../components/button";
 import { api } from "../../lib/axios";
 import { Activity } from "../../types/activity";
@@ -16,6 +16,8 @@ import { RelevantLinks } from "./relevant-links";
 
 export function TripDetailsPage() {
   const { tripId } = useParams();
+  const navigate = useNavigate();
+
   const [trip, setTrip] = useState<Trip | undefined>(undefined);
   const [activities, setActivities] = useState<Activity[]>([]);
   const [links, setLinks] = useState<Link[]>([]);
@@ -46,6 +48,7 @@ export function TripDetailsPage() {
         } else {
           console.error(error);
         }
+        navigate("/404");
       });
   }
 

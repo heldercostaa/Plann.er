@@ -29,8 +29,6 @@ npm run dev
 
 ## Roadmap
 
-- [ ] Confirm participation
-
 - [ ] Improve .env validation
 - [ ] Improve readme with pictures
 - [ ] Implement mobile version

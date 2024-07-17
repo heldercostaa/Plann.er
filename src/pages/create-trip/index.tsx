@@ -167,6 +167,8 @@ export function CreateTripPage() {
             setOwnerName={setOwnerName}
             setOwnerEmail={setOwnerEmail}
             isLoading={isLoading}
+            destination={destination}
+            dateRange={dateRange}
           />
         )}
       </div>
