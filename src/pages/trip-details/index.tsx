@@ -98,7 +98,11 @@ export function TripDetailsPage() {
     <>
       {contextHolder}
       <div className="mx-auto max-w-6xl space-y-8 px-6 py-10">
-        <DestinationAndDateHeader trip={trip} fetchTrip={fetchTrip} />
+        <DestinationAndDateHeader
+          trip={trip}
+          fetchTrip={fetchTrip}
+          fetchActivities={fetchActivities}
+        />
 
         <main className="flex gap-16 px-4">
           <div className="flex-1 space-y-6">

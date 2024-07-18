@@ -17,9 +17,9 @@ jobs:
     env:
       # Api
       VITE_API_BASE_URL: ${{ vars.VITE_API_BASE_URL }}
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    # environment:
+    #   name: github-pages
+    #   url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       - name: Checkout
@@ -34,9 +34,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # https://blog.devgenius.io/how-to-deploy-your-vite-react-app-to-github-pages-with-and-without-react-router-b060d912b10e
       - name: Build project
-        run: npm run build && cp ./dist/index.html ./dist/404.html
+        run: npm run build # && cp ./dist/index.html ./dist/404.html
+
 
       # - name: Setup Pages
       #   uses: actions/configure-pages@v4

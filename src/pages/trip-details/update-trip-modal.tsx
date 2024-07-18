@@ -16,6 +16,7 @@ interface UpdateTripModalProps {
   trip: Trip;
   isOpen: boolean;
   fetchTrip: () => void;
+  fetchActivities: () => void;
 }
 
 export function UpdateTripModal({
@@ -23,6 +24,7 @@ export function UpdateTripModal({
   trip,
   isOpen,
   fetchTrip,
+  fetchActivities,
 }: UpdateTripModalProps) {
   const { tripId } = useParams();
 
@@ -48,6 +50,7 @@ export function UpdateTripModal({
       });
 
       fetchTrip();
+      fetchActivities();
       closeUpdateTripModal();
     } catch (error: any) {
       const errorMessage = error.response.data.message;

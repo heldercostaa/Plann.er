@@ -78,7 +78,6 @@ export function CreateTripPage() {
     if (!startsAt || !endsAt) return;
     if (!destination) return;
     if (!ownerName || !ownerEmail) return;
-    if (emailsToInvite.length === 0) return;
 
     setIsLoading(true);
     try {
