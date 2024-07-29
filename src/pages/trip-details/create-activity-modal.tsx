@@ -40,7 +40,7 @@ export function CreateActivityModal({
     try {
       await api.post(`/trips/${tripId}/activities`, {
         title,
-        occursAt: occursAt.toISOString(),
+        occursAt: occursAt.utc().toISOString(),
       });
 
       fetchActivities();
