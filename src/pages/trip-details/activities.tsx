@@ -16,15 +16,15 @@ export function Activities({ activities, fetchActivities }: ActivitiesProps) {
   const [messageApi, contextHolder] = message.useMessage();
 
   function isPast(date: string) {
-    return dayjs().isAfter(date) && !dayjs(date).isToday();
+    return dayjs.utc().isAfter(date) && !dayjs.utc(date).isToday();
   }
 
   function isToday(date: string) {
-    return dayjs(date).isToday();
+    return dayjs.utc(date).isToday();
   }
 
   function isFuture(date: string) {
-    return dayjs().isBefore(date);
+    return dayjs.utc().isBefore(date);
   }
 
   async function removeActivity(activityId: string) {
@@ -64,10 +64,10 @@ export function Activities({ activities, fetchActivities }: ActivitiesProps) {
                 <span
                   className={`text-xl font-semibold ${isPast(date) && "text-zinc-300"} ${isToday(date) && "text-zinc-50"} ${isFuture(date) && "text-zinc-400"}`}
                 >
-                  {dayjs(date).format("MMMM Do")}
+                  {dayjs.utc(date).format("MMMM Do")}
                 </span>
                 <span className="text-xs text-zinc-500">
-                  {dayjs(date).format("dddd")}
+                  {dayjs.utc(date).format("dddd")}
                 </span>
               </div>
               {activities.length > 0 ? (
@@ -86,7 +86,7 @@ export function Activities({ activities, fetchActivities }: ActivitiesProps) {
                         <span className="text-zinc-100">{title}</span>
 
                         <span className="ml-auto text-sm text-zinc-400">
-                          {dayjs(occursAt).format("H:mm")}h
+                          {dayjs.utc(occursAt).format("H:mm")}h
                         </span>
 
                         <Popconfirm

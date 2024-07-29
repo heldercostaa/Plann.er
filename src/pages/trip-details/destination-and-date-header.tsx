@@ -28,8 +28,8 @@ export function DestinationAndDateHeader({
   }
 
   const formattedDate = formatDates({
-    startsAt: dayjs(trip.startsAt),
-    endsAt: dayjs(trip.endsAt),
+    startsAt: dayjs.utc(trip.startsAt),
+    endsAt: dayjs.utc(trip.endsAt),
   });
 
   return (

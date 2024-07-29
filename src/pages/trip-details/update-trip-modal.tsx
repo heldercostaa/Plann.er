@@ -31,7 +31,7 @@ export function UpdateTripModal({
   const [destination, setDestination] = useState(trip.destination);
   const [dateRange, setDateRange] = useState<
     [Dayjs | null, Dayjs | null] | null
-  >([dayjs(trip.startsAt), dayjs(trip.endsAt)]);
+  >([dayjs.utc(trip.startsAt), dayjs.utc(trip.endsAt)]);
   const [isDateInputFocused, setIsDateInputFocused] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();

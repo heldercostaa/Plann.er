@@ -93,8 +93,8 @@ export function CreateActivityModal({
               size="large"
               variant="borderless"
               showTime={{ use12Hours: false }}
-              minDate={dayjs(trip.startsAt)}
-              maxDate={dayjs(trip.endsAt)}
+              minDate={dayjs.utc(trip.startsAt)}
+              maxDate={dayjs.utc(trip.endsAt)}
               format={`MMMM Do [at] H:mm[h] (dddd)`}
               showSecond={false}
               minuteStep={5}
