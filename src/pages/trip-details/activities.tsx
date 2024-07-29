@@ -16,15 +16,15 @@ export function Activities({ activities, fetchActivities }: ActivitiesProps) {
   const [messageApi, contextHolder] = message.useMessage();
 
   function isPast(date: string) {
-    return dayjs().isAfter(date) && !dayjs(date).isToday();
+    return dayjs().utc().isAfter(date) && !dayjs(date).utc().isToday();
   }
 
   function isToday(date: string) {
-    return dayjs(date).isToday();
+    return dayjs(date).utc().isToday();
   }
 
   function isFuture(date: string) {
-    return dayjs().isBefore(date);
+    return dayjs().utc().isBefore(date);
   }
 
   async function removeActivity(activityId: string) {
@@ -64,10 +64,10 @@ export function Activities({ activities, fetchActivities }: ActivitiesProps) {
                 <span
                   className={`text-xl font-semibold ${isPast(date) && "text-zinc-300"} ${isToday(date) && "text-zinc-50"} ${isFuture(date) && "text-zinc-400"}`}
                 >
-                  {dayjs(date).format("MMMM Do")}
+                  {dayjs(date).utc().format("MMMM Do")}
                 </span>
                 <span className="text-xs text-zinc-500">
-                  {dayjs(date).format("dddd")}
+                  {dayjs(date).utc().format("dddd")}
                 </span>
               </div>
               {activities.length > 0 ? (
