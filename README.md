@@ -24,7 +24,7 @@
 </div>
 
 > [!NOTE]
-> The application might not be live due to free deploy services limitation, but you can access the [Getting Started](#getting-started) section and run the application locally
+> The application may not be live due to limitations of free deployment services. However, you can easily run the application locally by following the instructions in the [Local Setup Instructions](#local-setup-instructions) section.
 
 <details>
   <summary>Table of Contents</summary>
