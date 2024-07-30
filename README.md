@@ -55,16 +55,11 @@
 
 ## About The Project
 
-<table style="width: 100%;">
-  <tr style="border: none;">
-    <td style="width: 49%; border: none;">
-      <img src="./docs/1. Landing page.png" alt="Landing page" style="width: 100%; border-radius: 5px;"/>
-    </td>
-    <td style="width: 49%; padding-top: 25px; border: none;">
-      <img src="./docs/2. Trip page.png" alt="Trip page" style="width: 100%; border-radius: 5px;"/>
-    </td>
-  </tr>
-</table>
+<div>
+  <img src="./docs/1. Landing page.png" alt="Landing page" style="width: 49%; border-radius: 5px; margin-bottom: 20px;"/>
+  <img src="./docs/2. Trip page.png" alt="Trip page" style="width: 49%; border-radius: 5px; margin-top: 20px;"/>
+</div>
+<br />
 
 This is a personal project inspired by this [Figma design](<https://www.figma.com/design/8DfcJnIMg1sqhIbHqZVGsR/Plann.er-(Web)?node-id=3-376>). It includes several additional features such as animations, input validations, a deletion feature, email notifications, and more. The goal of this project is to explore and apply various technologies of interest in a practical, production-like application.
 
