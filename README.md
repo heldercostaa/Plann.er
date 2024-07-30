@@ -112,7 +112,7 @@ This project also includes a backend component, which you can find in the reposi
 ## Local Setup Instructions
 
 1. **Backend Endpoint**: Ensure you have a backend endpoint set up. Follow the [API Local Setup Instructions](https://github.com/heldercostaa/Plann.erAPI#local-setup-instructions) to get this running.
-2. **Location Autocomplete (Optional)**: If you want to enable location autocomplete, obtain a LocationIQ Geocoding API Key. LocationIQ offers a free tier that doesn’t require a credit card, making it easy to get started. This step is optional.
+2. **Location Autocomplete (Optional)**: If you want to enable location autocomplete, obtain a [LocationIQ Geocoding API Key](https://locationiq.com/geocoding). LocationIQ offers a free tier that doesn’t require a credit card, making it easy to get started. This step is optional.
 3. **Install Dependencies**: Navigate to the project directory and install the necessary dependencies:
 
 ```bash
